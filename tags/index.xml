@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on brealinblog</title>
-    <link>https://brealin.com/tags/</link>
+    <link>https://brealinhub.com/tags/</link>
     <description>Recent content in Tags on brealinblog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="https://brealin.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language><atom:link href="https://brealinhub.com/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
