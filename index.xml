@@ -2,17 +2,114 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>brealinblog</title>
-    <link>https://examplesite.com/</link>
+    <link>https://brealinhub.com/</link>
     <description>Recent content on brealinblog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 08 Jun 2023 11:50:28 +0800</lastBuildDate><atom:link href="https://examplesite.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Jun 2023 16:49:20 +0800</lastBuildDate><atom:link href="https://brealinhub.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>批量压缩图像和视频脚本</title>
+      <link>https://brealinhub.com/posts/%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E9%A2%91%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Wed, 21 Jun 2023 16:49:20 +0800</pubDate>
+      
+      <guid>https://brealinhub.com/posts/%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E9%A2%91%E8%84%9A%E6%9C%AC/</guid>
+      <description>基于 FFmpeg 的一个简单脚本，可以较方便的批量压缩图片与视频
+GitHub 地址：https://github.com/Brealin233/TTBatachCompressScripts
+FFmpeg 该脚本基于 FFmpeg 命令实现，所以需要提前下载好相关组件
+下载地址：https://ffmpeg.org/download.html#releases
+Win 建议使用 winget 安装；Mac 建议使用 HomeBrew 安装
+命令结构 TTScripts input_dir out_dir [-q] [-ic] [-mc]
+可选 -q：图像或视频的压缩程度、质量，通常数值越高压缩程度越高，体积大小越小，默认为 2
+-ic：图像编码器参数，默认为 mjpeg，可选为 webp
+-mc：视频编码器参数，默认为 H.264，可选为 H.265 或 libvpx-vp9（仅 MP4）
+使用 示例：
+python TTScripts input_dir output_dir -q 8 -ic webp
+或
+python TTScripts input_dir output_dir -q 20
+可能会出现 already exists. Overwrite? [y/N] 提示文件已存在是否覆写，输入 y 继续即可，或者输入 n 拒绝
+单图像或视频压缩 可使用如下命令
+python TTScripts single_file output_dir 环境变量 可根据不同系统配置 PATH 环境变量实现全局调用</description>
+      <content:encoded><![CDATA[<p>基于 FFmpeg 的一个简单脚本，可以较方便的批量压缩图片与视频</p>
+<p>GitHub 地址：<a href="https://github.com/Brealin233/TTBatachCompressScripts">https://github.com/Brealin233/TTBatachCompressScripts</a></p>
+<figure>
+    <img loading="lazy" src="/img/%e6%89%b9%e9%87%8f%e5%8e%8b%e7%bc%a9%e5%9b%be%e5%83%8f%e5%92%8c%e8%a7%86%e9%a2%91/TTScripts.png"/> 
+</figure>
+
+<h2 id="ffmpeg">FFmpeg</h2>
+<p>该脚本基于 <a href="https://ffmpeg.org">FFmpeg</a> 命令实现，所以需要提前下载好相关组件</p>
+<p>下载地址：<a href="https://ffmpeg.org/download.html#releases">https://ffmpeg.org/download.html#releases</a></p>
+<blockquote>
+<p>Win 建议使用 winget 安装；Mac 建议使用 HomeBrew 安装</p>
+</blockquote>
+<h2 id="命令结构">命令结构</h2>
+<p><code>TTScripts input_dir out_dir [-q] [-ic] [-mc]</code></p>
+<h3 id="可选">可选</h3>
+<p>-q：图像或视频的压缩程度、质量，通常数值越高压缩程度越高，体积大小越小，默认为 2</p>
+<p>-ic：图像编码器参数，默认为 mjpeg，可选为 webp</p>
+<p>-mc：视频编码器参数，默认为 H.264，可选为 H.265 或 libvpx-vp9（仅 MP4）</p>
+<h2 id="使用">使用</h2>
+<p>示例：</p>
+<p><code>python TTScripts input_dir output_dir -q 8 -ic webp</code></p>
+<p>或</p>
+<p><code>python TTScripts input_dir output_dir -q 20</code></p>
+<blockquote>
+<p>可能会出现 <code>already exists. Overwrite? [y/N]</code> 提示文件已存在是否覆写，输入 y 继续即可，或者输入 n 拒绝</p>
+</blockquote>
+<h3 id="单图像或视频压缩">单图像或视频压缩</h3>
+<p>可使用如下命令</p>
+<p><code>python TTScripts single_file output_dir </code></p>
+<h3 id="环境变量">环境变量</h3>
+<p>可根据不同系统配置 PATH 环境变量实现全局调用</p>
+<p>Mac 为例：</p>
+<p>添加 <code>#!/usr/local/bin/env python</code> 至 <code>TTScripts.py</code> 行首</p>
+<p>再将 <code>TTScripts.py</code> 移动至可执行文件目录 <code>/usr/local/bin</code> 下</p>
+<p>可使用如下命令移动即可</p>
+<p><code>sudo cp TTScripts.py /usr/local/bin/hello</code></p>
+<blockquote>
+<p>如遇调用失败，可输入命令 <code>chmod +x TTScripts.py</code> 添加可执行权限</p>
+</blockquote>
+<p>最后可类似如下直接调用</p>
+<p><code>TTScripts input_dir output_dir</code></p>
+<h2 id="附">附</h2>
+<table>
+<thead>
+<tr>
+<th>CRF</th>
+<th>File size reduction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>10</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>20</td>
+<td>40%</td>
+</tr>
+<tr>
+<td>25</td>
+<td>60%</td>
+</tr>
+<tr>
+<td>30</td>
+<td>80%</td>
+</tr>
+</tbody>
+</table>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>一些自定义配置</title>
-      <link>https://examplesite.com/posts/%E4%B8%80%E4%BA%9B%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</link>
+      <link>https://brealinhub.com/posts/%E4%B8%80%E4%BA%9B%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Thu, 08 Jun 2023 11:50:28 +0800</pubDate>
       
-      <guid>https://examplesite.com/posts/%E4%B8%80%E4%BA%9B%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://brealinhub.com/posts/%E4%B8%80%E4%BA%9B%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</guid>
       <description>这段时间从 Hexo 转到了 Hugo，以前用的主题是 fluid 个人觉得离我预期的简洁（外观也很棒，但个人喜欢偏简洁一点的）、性能还是差点1，不过因为它的可配置性非常高也非常容易配置，也是推荐各位去了解一下的
 主题配置用的是 hugo.yaml 格式
 修改首页 Icon 默认 icon 是很简洁的黑白图像，可以通过更改 svg 达到彩色 icon 需要
@@ -45,7 +142,7 @@ twitter = &amp;#39;&amp;#39;&amp;#39; &amp;lt;svg width=&amp;#34;800px&amp;#34; 
   favicon32x32:  &#34;/assets/favicon-32x32.png&#34;
   apple_touch_icon: &#34;/assets/apple-touch-icon.png&#34;
   safari_pinned_tab:  &#34;/assets/safari-pinned-tab.svg&#34;
-</code></pre><p>==注意==：我还在 <code>static</code> 目录下创建了<code>assets</code> 文件夹，将刚解压缩到了这个文件夹下，格式可为这样</p>
+</code></pre><p><mark>注意</mark>：我还在 <code>static</code> 目录下创建了<code>assets</code> 文件夹，将刚解压缩到了这个文件夹下，格式可为这样</p>
 <h2 id="post-文档窗口颜色和页面颜色">Post 文档窗口颜色和页面颜色</h2>
 <p>默认的 post 是白色背景，有时候看一篇博客纯白底色有点慌眼睛，个人更喜欢主题首页的颜色</p>
 <p>用取色工具取颜色，然后到 <code>/&lt;your site name&gt;/themes/PaperModX/assets/css/core/theme-vars.css</code> 更改</p>
@@ -130,7 +227,7 @@ twitter = &amp;#39;&amp;#39;&amp;#39; &amp;lt;svg width=&amp;#34;800px&amp;#34; 
 <p>使用的是这个 PapermodX 主题，有自带的渐变标记</p>
 <p>实例：</p>
 <p><code>==hello world==</code></p>
-<p>==hello world==</p>
+<p><mark>hello world</mark></p>
 <p>如果不需要这种或想更换颜色在 <code>/&lt;your site name&gt;/themes/PaperModX/assets/css/common/main.css</code> 中更改一下配置</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">mark</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="k">margin</span><span class="p">:</span> <span class="mi">0</span> <span class="mf">-0.4</span><span class="kt">em</span><span class="p">;</span>
@@ -148,7 +245,7 @@ twitter = &amp;#39;&amp;#39;&amp;#39; &amp;lt;svg width=&amp;#34;800px&amp;#34; 
 </span></span><span class="line"><span class="cl">	<span class="kp">-webkit-</span><span class="k">box-decoration-break</span><span class="p">:</span> <span class="kc">clone</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="k">box-decoration-break</span><span class="p">:</span> <span class="kc">clone</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span> 
-</span></span></code></pre></div><p>注：在这里我注视掉了这段，结果渲染的是默认的 <code>html</code> 纯黄色标记</p>
+</span></span></code></pre></div><p>注：在这里我注释掉了这段，渲染结果是默认的 <code>html</code> 纯黄色标记</p>
 <h2 id="shortcode">ShortCode</h2>
 <p>利用 hugo 自带的内容很容易实现一些效果</p>
 <p><span class = "mark-line">注意使用的时候把尖括号外的空格删掉</span></p>
@@ -289,10 +386,10 @@ images.forEach(img =&gt; {
     
     <item>
       <title>Unity 性能优化 Chapter3</title>
-      <link>https://examplesite.com/posts/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-chapter3/</link>
+      <link>https://brealinhub.com/posts/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-chapter3/</link>
       <pubDate>Fri, 07 Apr 2023 14:00:01 +0000</pubDate>
       
-      <guid>https://examplesite.com/posts/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-chapter3/</guid>
+      <guid>https://brealinhub.com/posts/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-chapter3/</guid>
       <description>性能优化问题的本质 慢与快的问题
 前提
 稳定性：不能因优化造成稳定性变差
@@ -448,10 +545,10 @@ images.forEach(img =&gt; {
     
     <item>
       <title>Unity 性能优化 Chapter2</title>
-      <link>https://examplesite.com/posts/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-chapter2/</link>
+      <link>https://brealinhub.com/posts/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-chapter2/</link>
       <pubDate>Fri, 31 Mar 2023 14:25:07 +0000</pubDate>
       
-      <guid>https://examplesite.com/posts/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-chapter2/</guid>
+      <guid>https://brealinhub.com/posts/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-chapter2/</guid>
       <description>静态优化 Import Unity 工程目录结构及用途 Asset 这是存储所有游戏资源的文件夹，包括脚本、纹理、声音和自定义编辑器脚本。文件夹的组织可能因项目而异，因组织而异。资产文件夹中可以有许多子文件夹，具体取决于项目的组织方式。例如，可能有一个用于场景的文件夹，一个用于脚本，一个用于音频，或者一个用于 Sprite，组织有多深是没有限制的
 {% note primary %}
 Unity 在 Assets 文件夹下保留了几个特殊文件夹名称。这些文件夹是编辑器、编辑器默认资源、Gizmos、资源、标准资产和流资产，并非每个项目都有所有这些文件夹
@@ -886,10 +983,10 @@ Canvas 是一个原生代码 Unity 组件，由 Unity 的渲染系统使用，�
     
     <item>
       <title>Unity 性能优化 Chapter1</title>
-      <link>https://examplesite.com/posts/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-chapter1/</link>
+      <link>https://brealinhub.com/posts/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-chapter1/</link>
       <pubDate>Fri, 17 Mar 2023 16:52:16 +0000</pubDate>
       
-      <guid>https://examplesite.com/posts/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-chapter1/</guid>
+      <guid>https://brealinhub.com/posts/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-chapter1/</guid>
       <description>前言 观看 bilibili @Metaverse大衍神君 视频记录笔记，是本来作者留下的笔记经整理也有自己不太懂的地方扩展延伸，如有错误还请海涵指正！
 环境搭建 使用如下命令拉起测试项目并使用 Unity 打开
 git clone https://github.com/lwwhb/Unity2022_SUNTAIL_Stylized_Fantasy_Village_Optimization 个人使用的 2022.1.16 版本打开，会出现一个 com.unity.render-pipelines.universal 的包错误，个人解决方案是在 PackageManage 里删除这个包后，Unity 会自动提示升级材质，点击后会自动安装新版的 URP 包，也会自动配置好渲染管线
@@ -1334,10 +1431,10 @@ Unity 有一个名为 Mecanim 的丰富而复杂的动画系统，它提供：�
     
     <item>
       <title>异步</title>
-      <link>https://examplesite.com/posts/%E5%BC%82%E6%AD%A5/</link>
+      <link>https://brealinhub.com/posts/%E5%BC%82%E6%AD%A5/</link>
       <pubDate>Mon, 06 Mar 2023 19:14:07 +0000</pubDate>
       
-      <guid>https://examplesite.com/posts/%E5%BC%82%E6%AD%A5/</guid>
+      <guid>https://brealinhub.com/posts/%E5%BC%82%E6%AD%A5/</guid>
       <description>查阅 MSDN 异步编程以了解更多
 异步编程 在 C# 中，异步编程是一种编程范式，它允许程序异步执行任务，而不会阻塞主线程或其他任务的执行。在异步程序中，程序可以继续执行其他任务，而无需等待一个任务完成
 优势 异步编程可以为需要执行 I/O 操作或其他耗时任务的应用程序提供显著的优势，例如访问数据库、下载文件或执行网络通信。通过使用异步编程，应用程序可以提高性能、响应性、可扩展性和资源效率，同时简化代码并提高容错性
@@ -1897,10 +1994,10 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
     
     <item>
       <title>线程</title>
-      <link>https://examplesite.com/posts/%E7%BA%BF%E7%A8%8B/</link>
+      <link>https://brealinhub.com/posts/%E7%BA%BF%E7%A8%8B/</link>
       <pubDate>Fri, 03 Mar 2023 16:21:40 +0000</pubDate>
       
-      <guid>https://examplesite.com/posts/%E7%BA%BF%E7%A8%8B/</guid>
+      <guid>https://brealinhub.com/posts/%E7%BA%BF%E7%A8%8B/</guid>
       <description>Threads 定义 线程被定义为程序的执行路径。每个线程定义了一个唯一的控制流，如果应用程序涉及复杂而耗时的操作，那么设置不同的执行路径或线程通常很有帮助，每个线程执行特定的工作
 线程是轻量级过程。使用线程的一个常见例子是现代操作系统实现并发编程。使用线程可以节省 CPU 周期的浪费，并提高应用程序的效率
 Thread 对象代表了一个线程的执行状态和行为，它可以直接创建和管理线程。线程是操作系统调度的最小执行单位，一个进程可以包含多个线程，线程之间可以并行执行，但需要注意线程安全的问题。开发人员需要手动控制线程的生命周期、线程的同步和互斥等问题，否则容易引起线程竞争、死锁等问题
@@ -2108,10 +2205,10 @@ Thread 对象代表了一个线程的执行状态和行为，它可以直接创�
     
     <item>
       <title>解决安装 Homebrew 的常见错误</title>
-      <link>https://examplesite.com/posts/%E5%AE%89%E8%A3%85homebrew/</link>
+      <link>https://brealinhub.com/posts/%E5%AE%89%E8%A3%85homebrew/</link>
       <pubDate>Mon, 27 Feb 2023 19:47:25 +0000</pubDate>
       
-      <guid>https://examplesite.com/posts/%E5%AE%89%E8%A3%85homebrew/</guid>
+      <guid>https://brealinhub.com/posts/%E5%AE%89%E8%A3%85homebrew/</guid>
       <description>“The missing package manager for macOS (or Linux)” &amp;ndash; Homebrew
 前言 Homebrew 是 macOS 下非常优秀的包管理软件解决方案，只需要几行命令就能找到并下载软件，可以省去查找、下载、解压、拖拽等步骤，但相信各位朋友在安装过程会遇到一些麻烦，以下是我针对自己网络环境和计算机情况写下记录，接下来一起讨论解决下吧
 安装 在终端下输入以下指令进行安装：
@@ -2226,10 +2323,10 @@ sudo vim /etc/hosts 输入自己密码后回车以使用 vim 进入命令模式�
     
     <item>
       <title>JetBrains IDE for Mac 破解问题</title>
-      <link>https://examplesite.com/posts/jetbrains-%E7%A0%B4%E8%A7%A3%E9%97%AE%E9%A2%98/</link>
+      <link>https://brealinhub.com/posts/jetbrains-%E7%A0%B4%E8%A7%A3%E9%97%AE%E9%A2%98/</link>
       <pubDate>Mon, 13 Feb 2023 22:35:13 +0000</pubDate>
       
-      <guid>https://examplesite.com/posts/jetbrains-%E7%A0%B4%E8%A7%A3%E9%97%AE%E9%A2%98/</guid>
+      <guid>https://brealinhub.com/posts/jetbrains-%E7%A0%B4%E8%A7%A3%E9%97%AE%E9%A2%98/</guid>
       <description>起因 使用了破解
 修改了 IDE 的 .vmoptions 文件
 心路路程 服了 无法正常从启动台启动&amp;hellip;
@@ -2275,10 +2372,10 @@ sudo vim /etc/hosts 输入自己密码后回车以使用 vim 进入命令模式�
     
     <item>
       <title>NodeCanvas 使用方法指北</title>
-      <link>https://examplesite.com/posts/nodecanvas-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%8C%87%E5%8C%97/</link>
+      <link>https://brealinhub.com/posts/nodecanvas-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%8C%87%E5%8C%97/</link>
       <pubDate>Sun, 26 Jun 2022 10:31:39 +0000</pubDate>
       
-      <guid>https://examplesite.com/posts/nodecanvas-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%8C%87%E5%8C%97/</guid>
+      <guid>https://brealinhub.com/posts/nodecanvas-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%8C%87%E5%8C%97/</guid>
       <description>NodeCanvas 使用方法指北 推荐查看 官方文档 了解全部详情
 引用我之前写过的操作文章 bilibili跳转 、csdn跳转</description>
       <content:encoded><![CDATA[<h2 id="nodecanvas-使用方法指北">NodeCanvas 使用方法指北</h2>
@@ -2291,10 +2388,10 @@ sudo vim /etc/hosts 输入自己密码后回车以使用 vim 进入命令模式�
     
     <item>
       <title>如何更新代码至 GitHub</title>
-      <link>https://examplesite.com/posts/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81%E8%87%B3github/</link>
+      <link>https://brealinhub.com/posts/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81%E8%87%B3github/</link>
       <pubDate>Sat, 25 Jun 2022 10:44:10 +0000</pubDate>
       
-      <guid>https://examplesite.com/posts/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81%E8%87%B3github/</guid>
+      <guid>https://brealinhub.com/posts/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81%E8%87%B3github/</guid>
       <description>更新代码至 GitHub 这一篇文章主要讲如何将本地更新写好的东西上传到 GitHub ，如果你还没有了解如何 上传代码至 GitHub 可以点击链接跳转。
 终端操作 首先定位你需要上传的文件所属的文件夹 输入命令 git status 查看当前文件夹下有什么文件被更改 输入命令 git add . 加入所有更改，也可以输入命令格式 git add [文件名称] 用来指定哪个被修改的文件上传 输入命令 git commit -m&amp;quot;记录内容&amp;quot; 记录一次上传的提交 输入指令 git push 即可提交至 GitHub 服务器 这里有朋友可能提交失败，尝试输入 git push origin [想要上传的分支名]
 回到网页查看效果 至此完成

@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>技巧 on brealinblog</title>
+    <link>https://brealinhub.com/tags/%E6%8A%80%E5%B7%A7/</link>
+    <description>Recent content in 技巧 on brealinblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 21 Jun 2023 16:49:20 +0800</lastBuildDate><atom:link href="https://brealinhub.com/tags/%E6%8A%80%E5%B7%A7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>批量压缩图像和视频脚本</title>
+      <link>https://brealinhub.com/posts/%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E9%A2%91%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Wed, 21 Jun 2023 16:49:20 +0800</pubDate>
+      
+      <guid>https://brealinhub.com/posts/%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E9%A2%91%E8%84%9A%E6%9C%AC/</guid>
+      <description>基于 FFmpeg 的一个简单脚本，可以较方便的批量压缩图片与视频
+GitHub 地址：https://github.com/Brealin233/TTBatachCompressScripts
+FFmpeg 该脚本基于 FFmpeg 命令实现，所以需要提前下载好相关组件
+下载地址：https://ffmpeg.org/download.html#releases
+Win 建议使用 winget 安装；Mac 建议使用 HomeBrew 安装
+命令结构 TTScripts input_dir out_dir [-q] [-ic] [-mc]
+可选 -q：图像或视频的压缩程度、质量，通常数值越高压缩程度越高，体积大小越小，默认为 2
+-ic：图像编码器参数，默认为 mjpeg，可选为 webp
+-mc：视频编码器参数，默认为 H.264，可选为 H.265 或 libvpx-vp9（仅 MP4）
+使用 示例：
+python TTScripts input_dir output_dir -q 8 -ic webp
+或
+python TTScripts input_dir output_dir -q 20
+可能会出现 already exists. Overwrite? [y/N] 提示文件已存在是否覆写，输入 y 继续即可，或者输入 n 拒绝
+单图像或视频压缩 可使用如下命令
+python TTScripts single_file output_dir 环境变量 可根据不同系统配置 PATH 环境变量实现全局调用</description>
+      <content:encoded><![CDATA[<p>基于 FFmpeg 的一个简单脚本，可以较方便的批量压缩图片与视频</p>
+<p>GitHub 地址：<a href="https://github.com/Brealin233/TTBatachCompressScripts">https://github.com/Brealin233/TTBatachCompressScripts</a></p>
+<figure>
+    <img loading="lazy" src="/img/%e6%89%b9%e9%87%8f%e5%8e%8b%e7%bc%a9%e5%9b%be%e5%83%8f%e5%92%8c%e8%a7%86%e9%a2%91/TTScripts.png"/> 
+</figure>
+
+<h2 id="ffmpeg">FFmpeg</h2>
+<p>该脚本基于 <a href="https://ffmpeg.org">FFmpeg</a> 命令实现，所以需要提前下载好相关组件</p>
+<p>下载地址：<a href="https://ffmpeg.org/download.html#releases">https://ffmpeg.org/download.html#releases</a></p>
+<blockquote>
+<p>Win 建议使用 winget 安装；Mac 建议使用 HomeBrew 安装</p>
+</blockquote>
+<h2 id="命令结构">命令结构</h2>
+<p><code>TTScripts input_dir out_dir [-q] [-ic] [-mc]</code></p>
+<h3 id="可选">可选</h3>
+<p>-q：图像或视频的压缩程度、质量，通常数值越高压缩程度越高，体积大小越小，默认为 2</p>
+<p>-ic：图像编码器参数，默认为 mjpeg，可选为 webp</p>
+<p>-mc：视频编码器参数，默认为 H.264，可选为 H.265 或 libvpx-vp9（仅 MP4）</p>
+<h2 id="使用">使用</h2>
+<p>示例：</p>
+<p><code>python TTScripts input_dir output_dir -q 8 -ic webp</code></p>
+<p>或</p>
+<p><code>python TTScripts input_dir output_dir -q 20</code></p>
+<blockquote>
+<p>可能会出现 <code>already exists. Overwrite? [y/N]</code> 提示文件已存在是否覆写，输入 y 继续即可，或者输入 n 拒绝</p>
+</blockquote>
+<h3 id="单图像或视频压缩">单图像或视频压缩</h3>
+<p>可使用如下命令</p>
+<p><code>python TTScripts single_file output_dir </code></p>
+<h3 id="环境变量">环境变量</h3>
+<p>可根据不同系统配置 PATH 环境变量实现全局调用</p>
+<p>Mac 为例：</p>
+<p>添加 <code>#!/usr/local/bin/env python</code> 至 <code>TTScripts.py</code> 行首</p>
+<p>再将 <code>TTScripts.py</code> 移动至可执行文件目录 <code>/usr/local/bin</code> 下</p>
+<p>可使用如下命令移动即可</p>
+<p><code>sudo cp TTScripts.py /usr/local/bin/hello</code></p>
+<blockquote>
+<p>如遇调用失败，可输入命令 <code>chmod +x TTScripts.py</code> 添加可执行权限</p>
+</blockquote>
+<p>最后可类似如下直接调用</p>
+<p><code>TTScripts input_dir output_dir</code></p>
+<h2 id="附">附</h2>
+<table>
+<thead>
+<tr>
+<th>CRF</th>
+<th>File size reduction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>10</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>20</td>
+<td>40%</td>
+</tr>
+<tr>
+<td>25</td>
+<td>60%</td>
+</tr>
+<tr>
+<td>30</td>
+<td>80%</td>
+</tr>
+</tbody>
+</table>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>一些自定义配置</title>
+      <link>https://brealinhub.com/posts/%E4%B8%80%E4%BA%9B%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Thu, 08 Jun 2023 11:50:28 +0800</pubDate>
+      
+      <guid>https://brealinhub.com/posts/%E4%B8%80%E4%BA%9B%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</guid>
+      <description>这段时间从 Hexo 转到了 Hugo，以前用的主题是 fluid 个人觉得离我预期的简洁（外观也很棒，但个人喜欢偏简洁一点的）、性能还是差点1，不过因为它的可配置性非常高也非常容易配置，也是推荐各位去了解一下的
+主题配置用的是 hugo.yaml 格式
+修改首页 Icon 默认 icon 是很简洁的黑白图像，可以通过更改 svg 达到彩色 icon 需要
+在 /&amp;lt;your site name&amp;gt;/hugo.yaml 中配置 socialIcons:
+再在位于 /&amp;lt;your site name&amp;gt;/themes/PaperModX/data/svg.toml 更改 svg 属性即可
+实例：
+twitter = &amp;#39;&amp;#39;&amp;#39; &amp;lt;svg width=&amp;#34;800px&amp;#34; height=&amp;#34;800px&amp;#34; viewBox=&amp;#34;0 0 16 16&amp;#34; xmlns=&amp;#34;http://www.w3.org/2000/svg&amp;#34; fill=&amp;#34;none&amp;#34;&amp;gt;&amp;lt;path fill=&amp;#34;#1D9BF0&amp;#34; d=&amp;#34;M13.567 5.144c.008.123.008.247.008.371 0 3.796-2.889 8.173-8.172 8.173v-.002A8.131 8.131 0 011 12.398a5.768 5.768 0 004.25-1.19 2.876 2.876 0 01-2.683-1.995c.431.083.875.066 1.297-.05A2.873 2.873 0 011.56 6.348v-.036c.4.222.847.345 1.304.36a2.876 2.876 0 01-.</description>
+      <content:encoded><![CDATA[<p>这段时间从 Hexo 转到了 Hugo，以前用的主题是 <a href="https://github.com/fluid-dev/hexo-theme-fluid">fluid</a> 个人觉得离我预期的简洁（外观也很棒，但个人喜欢偏简洁一点的）、性能还是差点<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，不过因为它的可配置性非常高也非常容易配置，也是推荐各位去了解一下的</p>
+<p>主题配置用的是 <code>hugo.yaml</code> 格式</p>
+<h2 id="修改首页-icon">修改首页 Icon</h2>
+<blockquote>
+<p>默认 icon 是很简洁的黑白图像，可以通过更改 <code>svg</code> 达到彩色 icon 需要</p>
+</blockquote>
+<p>在 <code>/&lt;your site name&gt;/hugo.yaml</code> 中配置 <code>socialIcons:</code></p>
+<p>再在位于 /<code>&lt;your site name&gt;/themes/PaperModX/data/svg.toml</code> 更改 <code>svg</code> 属性即可</p>
+<p>实例：</p>
+<pre tabindex="0"><code class="language-csv" data-lang="csv">twitter = 
+&#39;&#39;&#39;
+&lt;svg width=&#34;800px&#34; height=&#34;800px&#34; viewBox=&#34;0 0 16 16&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; fill=&#34;none&#34;&gt;&lt;path fill=&#34;#1D9BF0&#34; d=&#34;M13.567 5.144c.008.123.008.247.008.371 0 3.796-2.889 8.173-8.172 8.173v-.002A8.131 8.131 0 011 12.398a5.768 5.768 0 004.25-1.19 2.876 2.876 0 01-2.683-1.995c.431.083.875.066 1.297-.05A2.873 2.873 0 011.56 6.348v-.036c.4.222.847.345 1.304.36a2.876 2.876 0 01-.89-3.836 8.152 8.152 0 005.92 3 2.874 2.874 0 014.895-2.619 5.763 5.763 0 001.824-.697 2.883 2.883 0 01-1.262 1.588A5.712 5.712 0 0015 3.656a5.834 5.834 0 01-1.433 1.488z&#34;/&gt;
+&lt;/svg&gt;
+&#39;&#39;&#39;
+</code></pre><p>把 <code>&lt;svg&gt;</code> 标签对里的配置更换为自己想要的就行，这里推荐 <a href="https://www.svgviewer.dev">svgviewer</a> 网站，搜索想要的 icon 名称，它会出来对应 <code>svg</code> 配置代码</p>
+<h2 id="配置图标">配置图标</h2>
+<p>更改浏览器小图标（favicon）需要一些固定格式的图像，使用 <a href="https://realfavicongenerator.net">favicon 统一生成网站</a> 统一生成有各个不同需求的图标，解压缩到 <code>/&lt;your site name&gt;/static/</code> 下，再在  <code>/&lt;your site name&gt;/hugo.yaml</code> 中配置</p>
+<p>实例：</p>
+<pre tabindex="0"><code>assets:
+  # disableFingerprinting: true
+  favicon: &#34;/assets/favicon.ico&#34;
+  favicon16x16: &#34;/assets/favicon-16x16.png&#34;
+  favicon32x32:  &#34;/assets/favicon-32x32.png&#34;
+  apple_touch_icon: &#34;/assets/apple-touch-icon.png&#34;
+  safari_pinned_tab:  &#34;/assets/safari-pinned-tab.svg&#34;
+</code></pre><p><mark>注意</mark>：我还在 <code>static</code> 目录下创建了<code>assets</code> 文件夹，将刚解压缩到了这个文件夹下，格式可为这样</p>
+<h2 id="post-文档窗口颜色和页面颜色">Post 文档窗口颜色和页面颜色</h2>
+<p>默认的 post 是白色背景，有时候看一篇博客纯白底色有点慌眼睛，个人更喜欢主题首页的颜色</p>
+<p>用取色工具取颜色，然后到 <code>/&lt;your site name&gt;/themes/PaperModX/assets/css/core/theme-vars.css</code> 更改</p>
+<p>这里有 默认 和 dark 主题的配置，这里我们更改即可</p>
+<pre tabindex="0"><code>--theme: #F5F5F5; // post 页面颜色
+
+--entry: #f1efef; // post 窗口颜色
+</code></pre><h2 id="彩色标签">彩色标签</h2>
+<p>在 <code>/&lt;your site name&gt;/themes/PaperModX/assets/css/common/main.css</code> 中添加一下配置内容</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">note</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">padding</span><span class="p">:</span> <span class="mf">0.75</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">border-left</span><span class="p">:</span> <span class="mf">0.35</span><span class="kt">rem</span> <span class="kc">solid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">border-radius</span><span class="p">:</span> <span class="mf">0.25</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">margin</span><span class="p">:</span> <span class="mf">1.5</span><span class="kt">rem</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="kc">text</span><span class="o">-</span><span class="kc">color</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">transition</span><span class="p">:</span> <span class="kc">color</span> <span class="mf">0.2</span><span class="kt">s</span> <span class="kc">ease-in-out</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">font-size</span><span class="p">:</span> <span class="mf">0.9</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">note</span> <span class="nt">a</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="kc">text</span><span class="o">-</span><span class="kc">color</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">transition</span><span class="p">:</span> <span class="kc">color</span> <span class="mf">0.2</span><span class="kt">s</span> <span class="kc">ease-in-out</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">note</span> <span class="o">*</span><span class="p">:</span><span class="nd">last-child</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">margin-bottom</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">note-primary</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">background-color</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">183</span><span class="p">,</span><span class="mi">160</span><span class="p">,</span><span class="mi">224</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">border-color</span><span class="p">:</span> <span class="mh">#6f42c1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">note-secondary</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">note-default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">background-color</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">187</span><span class="p">,</span><span class="mi">187</span><span class="p">,</span><span class="mi">187</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">border-color</span><span class="p">:</span> <span class="mh">#777</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">note-success</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">background-color</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">174</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">174</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">border-color</span><span class="p">:</span> <span class="mh">#5cb85c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">note-danger</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">background-color</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">236</span><span class="p">,</span><span class="mi">169</span><span class="p">,</span><span class="mi">167</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">border-color</span><span class="p">:</span> <span class="mh">#d9534f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">note-warning</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">background-color</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">248</span><span class="p">,</span><span class="mi">214</span><span class="p">,</span><span class="mi">166</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">border-color</span><span class="p">:</span> <span class="mh">#f0ad4e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">note-info</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">background-color</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="mi">197</span><span class="p">,</span><span class="mi">228</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">border-color</span><span class="p">:</span> <span class="mh">#428bca</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">note-light</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">background-color</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">254</span><span class="p">,</span><span class="mi">254</span><span class="p">,</span><span class="mi">254</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">border-color</span><span class="p">:</span> <span class="mh">#0f0f0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>实例：</p>
+<pre tabindex="0"><code>&lt;div class=&#34;note note-primary&#34;&gt;  是颜色块的文字内容&lt;/div&gt;
+
+&lt;div class=&#34;note note-secondary&#34;&gt; 是颜色块的文字内容&lt;/div&gt;
+
+&lt;div class=&#34;note note-success&#34;&gt; 是颜色块的文字内容&lt;/div&gt;
+
+&lt;div class=&#34;note note-warning&#34;&gt; 是颜色块的文字内容&lt;/div&gt;
+
+&lt;div class=&#34;note note-info&#34;&gt; 是颜色块的文字内容&lt;/div&gt;
+</code></pre><div class="note note-primary">  是颜色块的文字内容</div>
+<div class="note note-secondary">  是颜色块的文字内容</div>
+<div class="note note-success">  是颜色块的文字内容</div>
+<div class="note note-warning">  是颜色块的文字内容</div>
+<div class="note note-info">  是颜色块的文字内容</div>
+<h2 id="自带渐变-mark">自带渐变 Mark</h2>
+<p>使用的是这个 PapermodX 主题，有自带的渐变标记</p>
+<p>实例：</p>
+<p><code>==hello world==</code></p>
+<p><mark>hello world</mark></p>
+<p>如果不需要这种或想更换颜色在 <code>/&lt;your site name&gt;/themes/PaperModX/assets/css/common/main.css</code> 中更改一下配置</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">mark</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">margin</span><span class="p">:</span> <span class="mi">0</span> <span class="mf">-0.4</span><span class="kt">em</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="kt">em</span> <span class="mf">0.4</span><span class="kt">em</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">border-radius</span><span class="p">:</span> <span class="mf">0.8</span><span class="kt">em</span> <span class="mf">0.3</span><span class="kt">em</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">background</span><span class="p">:</span> <span class="kc">transparent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">background-image</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="kc">to</span> <span class="kc">right</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span> <span class="mi">4</span><span class="kt">%</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kp">-webkit-</span><span class="k">box-decoration-break</span><span class="p">:</span> <span class="kc">clone</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">box-decoration-break</span><span class="p">:</span> <span class="kc">clone</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></div><p>注：在这里我注释掉了这段，渲染结果是默认的 <code>html</code> 纯黄色标记</p>
+<h2 id="shortcode">ShortCode</h2>
+<p>利用 hugo 自带的内容很容易实现一些效果</p>
+<p><span class = "mark-line">注意使用的时候把尖括号外的空格删掉</span></p>
+<h3 id="图片插入">图片插入</h3>
+<blockquote>
+<p>Hugo loves Markdown because of its simple content format, but there are times when Markdown falls short. Often, content authors are forced to add raw HTML (e.g., video <code>&lt;iframe&gt;</code>’s) to Markdown content. We think this contradicts the beautiful simplicity of Markdown’s syntax.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+</blockquote>
+<p>e.g.<code>{{ &lt; figure src = &quot;&lt;相对路径&gt;&quot;&gt; }}</code></p>
+<p>也有更多参数可以设置<code> {{ &lt; figure align=center src=&quot;image.jpg&quot; &gt; }}</code></p>
+<figure>
+    <img loading="lazy" src="/img/brealin.JPG"/> 
+</figure>
+
+<div class="note note-secondary">这里烦请问下各位，为什么我用 md 语法 [image](/img/image.png) ，生成本地预览时无法看见，还请教各位指出问题
+<p>图片路径：<code>&lt;site name&gt;/static/img/image.png</code></div></p>
+<h3 id="视频插入">视频插入</h3>
+<p>e.g.<code>{{ &lt; youtube &lt;youtube id&gt; &gt;}}</code></p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/7glCsF9fv3s" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>{{s<tweet-ref user = "elonmusk" id = "1667981519690907651">}}</p>
+<h3 id="自定义">自定义</h3>
+<p>可以加入自定义短码达到更多效果，定位到 <code>/&lt;your site name&gt;/themes/layouts/shortcodes</code> <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p>创建 <code>bilibili.html</code>, 引用 bilibili 视频效果代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">style</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/css&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nc">bilibili_shortcodes</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">height</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">padding-bottom</span><span class="p">:</span> <span class="mi">66</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">overflow</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nc">bilibili_shortcodes</span> <span class="nt">iframe</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;bilibili_shortcodes&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">iframe</span>
+</span></span><span class="line"><span class="cl">            <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://player.bilibili.com/player.html?bvid={{.Get 0 }}&amp;page={{ if .Get 1 }}{{.Get 1}}{{ else }}1&amp;high_quality=1&amp;danmaku=0&amp;as_wide=0{{end}}&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">scrolling</span><span class="o">=</span><span class="s">&#34;no&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">border</span><span class="o">=</span><span class="s">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">frameborder</span><span class="o">=</span><span class="s">&#34;no&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">framespacing</span><span class="o">=</span><span class="s">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">allowfullscreen</span><span class="o">=</span><span class="s">&#34;true&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>e.g. <code>{{ &lt;bilibili BV1xW4y1a7NK&gt; }}</code></p>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <style type="text/css">
+        .bilibili_shortcodes {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 66%;
+            margin: auto;
+            overflow: hidden;
+            text-align: center;
+        }
+        .bilibili_shortcodes iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+<div class="bilibili_shortcodes">
+    <iframe
+            src="https://player.bilibili.com/player.html?bvid=BV1xW4y1a7NK&page=1&high_quality=1&danmaku=0&as_wide=0"
+            scrolling="no"
+            border="0"
+            frameborder="no"
+            framespacing="0"
+            allowfullscreen="true"
+    >
+    </iframe>
+</div>
+</body>
+</html>
+
+
+<h2 id="图片放大">图片放大</h2>
+<p>添加以下代码到  <code>themes\PaperMod\layouts\partials\extend_footer.html</code><sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<pre tabindex="0"><code>&lt;script src=&#34;https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js&#34;&gt;&lt;/script&gt;
+&lt;script&gt;
+const images = Array.from(document.querySelectorAll(&#34;.post-content img&#34;));
+images.forEach(img =&gt; {
+  mediumZoom(img, {
+    margin: 0, /* The space outside the zoomed image */
+    scrollOffset: 10, /* The number of pixels to scroll to close the zoom */
+    container: null, /* The viewport to render the zoom in */
+    template: null, /* The template element to display on zoom */
+    background: &#39;rgba(0, 0, 0, 0.8)&#39;,
+  });
+});
+&lt;/script&gt;
+</code></pre><div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://github.com/adityatelange/hugo-PaperMod/issues/19#issuecomment-703218611">https://github.com/adityatelange/hugo-PaperMod/issues/19#issuecomment-703218611</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://gohugo.io/content-management/shortcodes/">https://gohugo.io/content-management/shortcodes/</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://www.sulvblog.cn/posts/blog/shortcodes/#1">https://www.sulvblog.cn/posts/blog/shortcodes/#1</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://invmy.com/posts/hugo-papermod-blog/">https://invmy.com/posts/hugo-papermod-blog/</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>解决安装 Homebrew 的常见错误</title>
+      <link>https://brealinhub.com/posts/%E5%AE%89%E8%A3%85homebrew/</link>
+      <pubDate>Mon, 27 Feb 2023 19:47:25 +0000</pubDate>
+      
+      <guid>https://brealinhub.com/posts/%E5%AE%89%E8%A3%85homebrew/</guid>
+      <description>“The missing package manager for macOS (or Linux)” &amp;ndash; Homebrew
+前言 Homebrew 是 macOS 下非常优秀的包管理软件解决方案，只需要几行命令就能找到并下载软件，可以省去查找、下载、解压、拖拽等步骤，但相信各位朋友在安装过程会遇到一些麻烦，以下是我针对自己网络环境和计算机情况写下记录，接下来一起讨论解决下吧
+安装 在终端下输入以下指令进行安装：
+/bin/bash -c &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&amp;#34; 报错 可能会遇到类似以下报错
+&amp;gt;&amp;gt;&amp;gt; csscurl: (7) Failed to connect to raw.githubusercontent.com port 443: Connection refused 原因：可能因为是网址被墙或者是域名被污染
+适用于自己情况的解决步骤 安装环境 在这里首先需要安装 Command Line Tools for XCode（CLT） 这个工具，为安装 Homebrew 提供环境，如果已经安装过 XCode 的朋友可跳过，因为软件自带环境，没有的朋友则输入以下指令进行安装
+xcode-select --install 其中会有安装软件的提示，根据要求点下来即可，过程十分钟左右
+自定义增加 host 映射 目的：跳过自己 DNS 的解析
+在终端输入以下命令
+sudo vim /etc/hosts 输入自己密码后回车以使用 vim 进入命令模式，按下 i 进入插入模式，在最下面添加以下内容，输入完成后按下 ecs 退出插入模式并输入 :wq 保存后退出</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>“The missing package manager for macOS (or Linux)” &ndash; Homebrew</p>
+</blockquote>
+<h2 id="前言">前言</h2>
+<p>Homebrew 是 macOS 下非常优秀的包管理软件解决方案，只需要几行命令就能找到并下载软件，可以省去查找、下载、解压、拖拽等步骤，但相信各位朋友在安装过程会遇到一些麻烦，以下是我针对自己网络环境和计算机情况写下记录，接下来一起讨论解决下吧</p>
+<h2 id="安装">安装</h2>
+<p>在终端下输入以下指令进行安装：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/bin/bash -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><h3 id="报错">报错</h3>
+<p>可能会遇到类似以下报错</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-s" data-lang="s"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">csscurl</span><span class="o">:</span> <span class="p">(</span><span class="m">7</span><span class="p">)</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">connect</span> <span class="n">to</span> <span class="n">raw.githubusercontent.com</span> <span class="n">port</span> <span class="m">443</span><span class="o">:</span> <span class="n">Connection</span> <span class="n">refused</span>
+</span></span></code></pre></div><p>原因：可能因为是网址被墙或者是域名被污染</p>
+<h2 id="适用于自己情况的解决步骤">适用于自己情况的解决步骤</h2>
+<ul>
+<li>安装环境</li>
+</ul>
+<p>在这里首先需要安装 Command Line Tools for XCode（CLT） 这个工具，为安装 Homebrew 提供环境，如果已经安装过 XCode 的朋友可跳过，因为软件自带环境，没有的朋友则输入以下指令进行安装</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">xcode-select --install
+</span></span></code></pre></div><p>其中会有安装软件的提示，根据要求点下来即可，过程十分钟左右</p>
+<ul>
+<li>自定义增加 host 映射</li>
+</ul>
+<p>目的：跳过自己 DNS 的解析</p>
+<p>在终端输入以下命令</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">sudo vim /etc/hosts
+</span></span></code></pre></div><p>输入自己密码后回车以使用 vim 进入命令模式，按下 <code>i</code> 进入插入模式，在最下面添加以下内容，输入完成后按下 <code>ecs</code> 退出插入模式并输入 <code>:wq</code> 保存后退出</p>
+<pre tabindex="0"><code>199.232.68.133 user-images.githubusercontent.com
+199.232.68.133 avatars2.githubusercontent.com
+199.232.68.133 avatars1.githubusercontent.com
+</code></pre><ul>
+<li>安装 Homebrew</li>
+</ul>
+<p>最后再次输入以下指令可成功安装</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">/bin/bash -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><p>过程可能会有提示按下 enter 什么的，根据提示走就行</p>
+<ul>
+<li>环境配置</li>
+</ul>
+<p>最后一步提示你需要配置 PATH 环境变量，根据自己芯片架构类型选择输入</p>
+<blockquote>
+<p>PATH 环境变量是 shell 用于搜索可执行文件的目录列表。当使用未内置在 shell 中的命令时，shell 将按顺序搜索这些目录，并执行它找到的第一个匹配的可执行文件</p>
+</blockquote>
+<p>ARM 架构写法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;export PATH=/opt/homebrew/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span> &gt;&gt; ~/.bash_profile <span class="o">&amp;&amp;</span> <span class="nb">source</span> ~/.bash_profile
+</span></span></code></pre></div><p>X86 架构写法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;export PATH=/usr/local/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span> &gt;&gt; ~/.bash_profile <span class="o">&amp;&amp;</span> <span class="nb">source</span> ~/.bash_profile
+</span></span></code></pre></div><h2 id="其他解决方法">其他解决方法</h2>
+<h3 id="国内镜像源">国内镜像源</h3>
+<p>推荐这篇文章来通过使用国内的镜像下载安装：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/90508170">https://zhuanlan.zhihu.com/p/90508170</a></p>
+<h3 id="测试网络环境">测试网络环境</h3>
+<p>先尝试进入以下网址判断是否网络通畅</p>
+<p><a href="https://raw.githubusercontent.com/Homebrew/install/master/install">https://raw.githubusercontent.com/Homebrew/install/master/install</a></p>
+<p>如果可以正常进入，表示网络正常，之后右键点击鼠标保存到磁盘上的任意位置，可取名为 <code>brew_install.rb</code></p>
+<p>然后在终端输入以下指令，如果执行成功，则输入上面的安装命令即可</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl">ruby brew_install.rb
+</span></span></code></pre></div><p>注意：在网上有找到部分网友在打不开的情况下，直接保存该文件内容，再执行语句也能完成，大家可以尝试一下</p>
+<h3 id="增加-dns-解析">增加 DNS 解析</h3>
+<p>上面有提到绕过 DNS 解析，这里可以尝试使用正确符合的 DNS 来解析尝试</p>
+<p>在自己网络中找到如下设置面板</p>
+<p>可以输入专用解析地址 <code>114.114.114.114</code> ，完成后再输入安装指令即可</p>
+<figure>
+    <img loading="lazy" src="/img/Homebrew%e5%ae%89%e8%a3%85/DNS%e9%85%8d%e7%bd%ae.png"/> 
+</figure>
+
+<p>也有找到输入 <code>8.8.8.8</code> 完成的网友，可以都尝试一下</p>
+<h3 id="更多">更多</h3>
+<p>不同的电脑不同的网络环境都有不同的情况，也有找到用手机热点解决的情况</p>
+<h2 id="讨论">讨论</h2>
+<h3 id="网络-ip-查询">网络 IP 查询</h3>
+<p>以下两个网站可以查询到你需要的网站 ip 地址</p>
+<p><a href="https://www.ipaddress.com">https://www.ipaddress.com</a> 或 <a href="https://www.abuseipdb.com">https://www.abuseipdb.com</a></p>
+<h3 id="域名">域名</h3>
+<p>在上面我们有用到 <code>199.232.68.133 user-images.githubusercontent.com</code> 这样的跳过解析的方法，同理，我们也可以用这个方法在不翻墙的情况下可以访问 GitHub （不是绝对）</p>
+<h3 id="存放路径">存放路径</h3>
+<p>在 ARM 芯片架构和 X86 芯片架构下，安装后的 Homebrew 存放路径略有不同，更多信息可以参阅 <a href="https://sspai.com/post/63935">在 M1 芯片 Mac 上使用 Homebrew</a> 这篇文章</p>
+<p>ARM：<code>/opt/homebrew</code></p>
+<p>X86：<code>/usr/local/Homebrew</code></p>
+<p>注意：这里需要注意安装后，配置上文提到的配置 PATH 环境变量</p>
+<h2 id="总结">总结</h2>
+<p>以上内容都是网络上搜罗尝试总结，如有错误，还请海涵指正！</p>
+<p>以下网址内容是本文部分来源，也可以看看原文讨论结果，希望能给到你更多思路</p>
+<p>stackoverflow：</p>
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/questions/29910217/homebrew-installation-on-mac-os-x-failed-to-connect-to-raw-githubusercontent-com/72087738#72087738">https://stackoverflow.com/questions/29910217/homebrew-installation-on-mac-os-x-failed-to-connect-to-raw-githubusercontent-com/72087738#72087738</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/35677031/adding-homebrew-to-path">https://stackoverflow.com/questions/35677031/adding-homebrew-to-path</a></p>
+</li>
+</ul>
+<p>csdn：</p>
+<ul>
+<li><a href="https://blog.csdn.net/weixin_38716347/article/details/123838344">https://blog.csdn.net/weixin_38716347/article/details/123838344</a></li>
+</ul>
+<p>少数派：</p>
+<ul>
+<li><a href="https://sspai.com/post/56009">https://sspai.com/post/56009</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>JetBrains IDE for Mac 破解问题</title>
+      <link>https://brealinhub.com/posts/jetbrains-%E7%A0%B4%E8%A7%A3%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 13 Feb 2023 22:35:13 +0000</pubDate>
+      
+      <guid>https://brealinhub.com/posts/jetbrains-%E7%A0%B4%E8%A7%A3%E9%97%AE%E9%A2%98/</guid>
+      <description>起因 使用了破解
+修改了 IDE 的 .vmoptions 文件
+心路路程 服了 无法正常从启动台启动&amp;hellip;
+几近疯狂！！！
+尝试措施 彻底卸载 https://www.jetbrains.com/help/rider/Uninstall.html#standalone
+但好像没用
+其实思路没问题，就还是没卸载干净 =(
+删除用以破解的 VMS 每个朋友路径、IDE 可能不同
+以我举例：通过用包打开软件，依次找到文件 Content - MacOS - rider.Unix ，双击打开可以看到前面有行 parseVMOptions 找到你电脑这个 .vmoptions 文件所处位置，删除，卸载，重新安装，发现没用 :/
+原因猜测：虽然删除了用以启动的破解配置文件，但并没有更改 IDE 启动用以的前破解配置文件路径
+解决 YouTrack 解决原文
+打开文件 /Users/{USER_NAME}/Library/LaunchAgents/jetbrains.vmoptions.plist ，删除所有 launchctl setenv &amp;quot;*_OPTIONS&amp;quot;. 然后重启
+完成！
+原因猜测：更改了用以启动的配置文件路径
+用正版用正版 ToT</description>
+      <content:encoded><![CDATA[<h3 id="起因">起因</h3>
+<p>使用了破解</p>
+<p>修改了 IDE 的 <code>.vmoptions</code> 文件</p>
+<h3 id="心路路程">心路路程</h3>
+<p>服了 无法正常从启动台启动&hellip;</p>
+<p>几近疯狂！！！</p>
+<h3 id="尝试措施">尝试措施</h3>
+<h4 id="彻底卸载">彻底卸载</h4>
+<p><a href="https://www.jetbrains.com/help/rider/Uninstall.html#standalone">https://www.jetbrains.com/help/rider/Uninstall.html#standalone</a></p>
+<figure>
+     <img loading="lazy" src="/img/JetBrains%e7%a0%b4%e8%a7%a3%e9%97%ae%e9%a2%98/Inquiry.png"/> 
+ </figure>
+
+<p>但好像没用</p>
+<p>其实思路没问题，就还是没卸载干净 =(</p>
+<h4 id="删除用以破解的-vms">删除用以破解的 VMS</h4>
+<p>每个朋友路径、IDE 可能不同</p>
+<p>以我举例：通过用包打开软件，依次找到文件 <code>Content - MacOS - rider.Unix</code> ，双击打开可以看到前面有行 <code>parseVMOptions</code> 找到你电脑这个 <code>.vmoptions</code> 文件所处位置，删除，卸载，重新安装，发现没用 :/</p>
+<p>原因猜测：虽然删除了用以启动的破解配置文件，但并没有更改 IDE 启动用以的前破解配置文件路径</p>
+<h3 id="解决">解决</h3>
+<p><a href="https://youtrack.jetbrains.com/issue/JBR-4296#focus=Comments-27-5840836.0-0">YouTrack 解决原文</a></p>
+<p>打开文件 <code>/Users/{USER_NAME}/Library/LaunchAgents/jetbrains.vmoptions.plist</code> ，删除所有 <code>launchctl setenv &quot;*_OPTIONS&quot;</code>. 然后重启</p>
+<p>完成！</p>
+<p>原因猜测：更改了用以启动的配置文件路径</p>
+<p>用正版用正版 ToT</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>如何更新代码至 GitHub</title>
+      <link>https://brealinhub.com/posts/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81%E8%87%B3github/</link>
+      <pubDate>Sat, 25 Jun 2022 10:44:10 +0000</pubDate>
+      
+      <guid>https://brealinhub.com/posts/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81%E8%87%B3github/</guid>
+      <description>更新代码至 GitHub 这一篇文章主要讲如何将本地更新写好的东西上传到 GitHub ，如果你还没有了解如何 上传代码至 GitHub 可以点击链接跳转。
+终端操作 首先定位你需要上传的文件所属的文件夹 输入命令 git status 查看当前文件夹下有什么文件被更改 输入命令 git add . 加入所有更改，也可以输入命令格式 git add [文件名称] 用来指定哪个被修改的文件上传 输入命令 git commit -m&amp;quot;记录内容&amp;quot; 记录一次上传的提交 输入指令 git push 即可提交至 GitHub 服务器 这里有朋友可能提交失败，尝试输入 git push origin [想要上传的分支名]
+回到网页查看效果 至此完成
+GitHub Desktop 操作 点我下载 GitHub 客户端,并在客户端完成登陆
+选择从远端克隆到本地（2） 或者 选择本地已有仓库（4） 当你在文件夹下作出修改，软件会给出你的 Changes 对修改内容进行提交 Description 内容可以选做修改
+最后点击上传至服务器 至此完成
+软件还有很多内容，可以多多探索
+其他 无论是终端的操作方法还是软件操作方法，熟练掌握都还是很方便的，这里也仅仅展示了上传的一些简单操作，还有整合 Merge 、解决冲突 Conflict 等等，以后有机会再聊吧，如有错误欢迎底部留言或讨论，下次再见！</description>
+      <content:encoded><![CDATA[<h2 id="更新代码至-github">更新代码至 GitHub</h2>
+<p>这一篇文章主要讲如何将本地更新写好的东西上传到 GitHub ，如果你还没有了解如何 <a href="https://www.bilibili.com/read/cv13520264?spm_id_from=333.999.0.0"><strong>上传代码至 GitHub</strong></a> 可以点击链接跳转。</p>
+<h3 id="终端操作">终端操作</h3>
+<ol>
+<li>
+<p>首先定位你需要上传的文件所属的文件夹 <figure>
+    <img loading="lazy" src="/img/%e5%a6%82%e4%bd%95%e6%9b%b4%e6%96%b0%e4%bb%a3%e7%a0%81%e8%87%b3GitHub/1.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>输入命令  <code>git status</code> 查看当前文件夹下有什么文件被更改  <figure>
+    <img loading="lazy" src="/img/%e5%a6%82%e4%bd%95%e6%9b%b4%e6%96%b0%e4%bb%a3%e7%a0%81%e8%87%b3GitHub/2.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>输入命令  <code>git add .</code>  加入所有更改，也可以输入命令格式 <code>git add [文件名称]</code> 用来指定哪个被修改的文件上传  <figure>
+    <img loading="lazy" src="/img/%e5%a6%82%e4%bd%95%e6%9b%b4%e6%96%b0%e4%bb%a3%e7%a0%81%e8%87%b3GitHub/3.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>输入命令 <code>git commit -m&quot;记录内容&quot;</code> 记录一次上传的提交  <figure>
+    <img loading="lazy" src="/img/%e5%a6%82%e4%bd%95%e6%9b%b4%e6%96%b0%e4%bb%a3%e7%a0%81%e8%87%b3GitHub/4.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>输入指令 <code>git push</code> 即可提交至 GitHub 服务器  <figure>
+    <img loading="lazy" src="/img/%e5%a6%82%e4%bd%95%e6%9b%b4%e6%96%b0%e4%bb%a3%e7%a0%81%e8%87%b3GitHub/5.png"/> 
+</figure>
+</p>
+</li>
+</ol>
+<p>这里有朋友可能提交失败，尝试输入 <code>git push origin [想要上传的分支名]</code></p>
+<p>回到网页查看效果 </p>
+<p>至此完成</p>
+<h3 id="github-desktop-操作">GitHub Desktop 操作</h3>
+<ol>
+<li>
+<p><a href="https://desktop.github.com">点我下载</a> GitHub 客户端,并在客户端完成登陆</p>
+</li>
+<li>
+<p>选择从<strong>远端克隆到本地（2）</strong> 或者 <strong>选择本地已有仓库（4）</strong> </p>
+</li>
+<li>
+<p>当你在文件夹下作出修改，软件会给出你的 <strong>Changes</strong> </p>
+</li>
+<li>
+<p>对修改内容进行提交 
+Description 内容可以选做修改</p>
+</li>
+<li>
+<p>最后点击上传至服务器 </p>
+</li>
+</ol>
+<p>至此完成</p>
+<blockquote>
+<p>软件还有很多内容，可以多多探索</p>
+</blockquote>
+<h3 id="其他">其他</h3>
+<p>无论是终端的操作方法还是软件操作方法，熟练掌握都还是很方便的，这里也仅仅展示了上传的一些简单操作，还有整合 Merge 、解决冲突 Conflict 等等，以后有机会再聊吧，如有错误欢迎底部留言或讨论，下次再见！</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>
