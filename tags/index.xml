@@ -5,6 +5,61 @@
     <link>https://brealinhub.com/tags/</link>
     <description>Recent content in Tags on brealinblog</description>
     <generator>Hugo -- gohugo.io</generator>
+<<<<<<< HEAD
     <language>en</language><atom:link href="https://brealinhub.com/tags/index.xml" rel="self" type="application/rss+xml" />
+=======
+    <language>en</language>
+    <lastBuildDate>Wed, 21 Jun 2023 16:49:20 +0800</lastBuildDate><atom:link href="https://brealinhub.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>技巧</title>
+      <link>https://brealinhub.com/tags/%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Wed, 21 Jun 2023 16:49:20 +0800</pubDate>
+      
+      <guid>https://brealinhub.com/tags/%E6%8A%80%E5%B7%A7/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Unity</title>
+      <link>https://brealinhub.com/tags/unity/</link>
+      <pubDate>Fri, 07 Apr 2023 14:00:01 +0000</pubDate>
+      
+      <guid>https://brealinhub.com/tags/unity/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>性能优化</title>
+      <link>https://brealinhub.com/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Fri, 07 Apr 2023 14:00:01 +0000</pubDate>
+      
+      <guid>https://brealinhub.com/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>C#</title>
+      <link>https://brealinhub.com/tags/c#/</link>
+      <pubDate>Mon, 06 Mar 2023 19:14:07 +0000</pubDate>
+      
+      <guid>https://brealinhub.com/tags/c#/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>https://brealinhub.com/tags/git/</link>
+      <pubDate>Sat, 25 Jun 2022 10:44:10 +0000</pubDate>
+      
+      <guid>https://brealinhub.com/tags/git/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+>>>>>>> master
   </channel>
 </rss>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Git on brealinblog</title>
+    <link>https://brealinhub.com/tags/git/</link>
+    <description>Recent content in Git on brealinblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 25 Jun 2022 10:44:10 +0000</lastBuildDate><atom:link href="https://brealinhub.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何更新代码至 GitHub</title>
+      <link>https://brealinhub.com/posts/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81%E8%87%B3github/</link>
+      <pubDate>Sat, 25 Jun 2022 10:44:10 +0000</pubDate>
+      
+      <guid>https://brealinhub.com/posts/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81%E8%87%B3github/</guid>
+      <description>更新代码至 GitHub 这一篇文章主要讲如何将本地更新写好的东西上传到 GitHub ，如果你还没有了解如何 上传代码至 GitHub 可以点击链接跳转。
+终端操作 首先定位你需要上传的文件所属的文件夹 输入命令 git status 查看当前文件夹下有什么文件被更改 输入命令 git add . 加入所有更改，也可以输入命令格式 git add [文件名称] 用来指定哪个被修改的文件上传 输入命令 git commit -m&amp;quot;记录内容&amp;quot; 记录一次上传的提交 输入指令 git push 即可提交至 GitHub 服务器 这里有朋友可能提交失败，尝试输入 git push origin [想要上传的分支名]
+回到网页查看效果 至此完成
+GitHub Desktop 操作 点我下载 GitHub 客户端,并在客户端完成登陆
+选择从远端克隆到本地（2） 或者 选择本地已有仓库（4） 当你在文件夹下作出修改，软件会给出你的 Changes 对修改内容进行提交 Description 内容可以选做修改
+最后点击上传至服务器 至此完成
+软件还有很多内容，可以多多探索
+其他 无论是终端的操作方法还是软件操作方法，熟练掌握都还是很方便的，这里也仅仅展示了上传的一些简单操作，还有整合 Merge 、解决冲突 Conflict 等等，以后有机会再聊吧，如有错误欢迎底部留言或讨论，下次再见！</description>
+      <content:encoded><![CDATA[<h2 id="更新代码至-github">更新代码至 GitHub</h2>
+<p>这一篇文章主要讲如何将本地更新写好的东西上传到 GitHub ，如果你还没有了解如何 <a href="https://www.bilibili.com/read/cv13520264?spm_id_from=333.999.0.0"><strong>上传代码至 GitHub</strong></a> 可以点击链接跳转。</p>
+<h3 id="终端操作">终端操作</h3>
+<ol>
+<li>
+<p>首先定位你需要上传的文件所属的文件夹 <figure>
+    <img loading="lazy" src="/img/%e5%a6%82%e4%bd%95%e6%9b%b4%e6%96%b0%e4%bb%a3%e7%a0%81%e8%87%b3GitHub/1.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>输入命令  <code>git status</code> 查看当前文件夹下有什么文件被更改  <figure>
+    <img loading="lazy" src="/img/%e5%a6%82%e4%bd%95%e6%9b%b4%e6%96%b0%e4%bb%a3%e7%a0%81%e8%87%b3GitHub/2.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>输入命令  <code>git add .</code>  加入所有更改，也可以输入命令格式 <code>git add [文件名称]</code> 用来指定哪个被修改的文件上传  <figure>
+    <img loading="lazy" src="/img/%e5%a6%82%e4%bd%95%e6%9b%b4%e6%96%b0%e4%bb%a3%e7%a0%81%e8%87%b3GitHub/3.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>输入命令 <code>git commit -m&quot;记录内容&quot;</code> 记录一次上传的提交  <figure>
+    <img loading="lazy" src="/img/%e5%a6%82%e4%bd%95%e6%9b%b4%e6%96%b0%e4%bb%a3%e7%a0%81%e8%87%b3GitHub/4.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>输入指令 <code>git push</code> 即可提交至 GitHub 服务器  <figure>
+    <img loading="lazy" src="/img/%e5%a6%82%e4%bd%95%e6%9b%b4%e6%96%b0%e4%bb%a3%e7%a0%81%e8%87%b3GitHub/5.png"/> 
+</figure>
+</p>
+</li>
+</ol>
+<p>这里有朋友可能提交失败，尝试输入 <code>git push origin [想要上传的分支名]</code></p>
+<p>回到网页查看效果 </p>
+<p>至此完成</p>
+<h3 id="github-desktop-操作">GitHub Desktop 操作</h3>
+<ol>
+<li>
+<p><a href="https://desktop.github.com">点我下载</a> GitHub 客户端,并在客户端完成登陆</p>
+</li>
+<li>
+<p>选择从<strong>远端克隆到本地（2）</strong> 或者 <strong>选择本地已有仓库（4）</strong> </p>
+</li>
+<li>
+<p>当你在文件夹下作出修改，软件会给出你的 <strong>Changes</strong> </p>
+</li>
+<li>
+<p>对修改内容进行提交 
+Description 内容可以选做修改</p>
+</li>
+<li>
+<p>最后点击上传至服务器 </p>
+</li>
+</ol>
+<p>至此完成</p>
+<blockquote>
+<p>软件还有很多内容，可以多多探索</p>
+</blockquote>
+<h3 id="其他">其他</h3>
+<p>无论是终端的操作方法还是软件操作方法，熟练掌握都还是很方便的，这里也仅仅展示了上传的一些简单操作，还有整合 Merge 、解决冲突 Conflict 等等，以后有机会再聊吧，如有错误欢迎底部留言或讨论，下次再见！</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

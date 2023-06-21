@@ -6,7 +6,108 @@
     <description>Recent content on brealinblog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+<<<<<<< HEAD
     <lastBuildDate>Thu, 08 Jun 2023 11:50:28 +0800</lastBuildDate><atom:link href="https://brealinhub.com/index.xml" rel="self" type="application/rss+xml" />
+=======
+    <lastBuildDate>Wed, 21 Jun 2023 16:49:20 +0800</lastBuildDate><atom:link href="https://brealinhub.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>批量压缩图像和视频脚本</title>
+      <link>https://brealinhub.com/posts/%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E9%A2%91%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Wed, 21 Jun 2023 16:49:20 +0800</pubDate>
+      
+      <guid>https://brealinhub.com/posts/%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E9%A2%91%E8%84%9A%E6%9C%AC/</guid>
+      <description>基于 FFmpeg 的一个简单脚本，可以较方便的批量压缩图片与视频
+GitHub 地址：https://github.com/Brealin233/TTBatachCompressScripts
+FFmpeg 该脚本基于 FFmpeg 命令实现，所以需要提前下载好相关组件
+下载地址：https://ffmpeg.org/download.html#releases
+Win 建议使用 winget 安装；Mac 建议使用 HomeBrew 安装
+命令结构 TTScripts input_dir out_dir [-q] [-ic] [-mc]
+可选 -q：图像或视频的压缩程度、质量，通常数值越高压缩程度越高，体积大小越小，默认为 2
+-ic：图像编码器参数，默认为 mjpeg，可选为 webp
+-mc：视频编码器参数，默认为 H.264，可选为 H.265 或 libvpx-vp9（仅 MP4）
+使用 示例：
+python TTScripts input_dir output_dir -q 8 -ic webp
+或
+python TTScripts input_dir output_dir -q 20
+可能会出现 already exists. Overwrite? [y/N] 提示文件已存在是否覆写，输入 y 继续即可，或者输入 n 拒绝
+单图像或视频压缩 可使用如下命令
+python TTScripts single_file output_dir 环境变量 可根据不同系统配置 PATH 环境变量实现全局调用</description>
+      <content:encoded><![CDATA[<p>基于 FFmpeg 的一个简单脚本，可以较方便的批量压缩图片与视频</p>
+<p>GitHub 地址：<a href="https://github.com/Brealin233/TTBatachCompressScripts">https://github.com/Brealin233/TTBatachCompressScripts</a></p>
+<figure>
+    <img loading="lazy" src="/img/%e6%89%b9%e9%87%8f%e5%8e%8b%e7%bc%a9%e5%9b%be%e5%83%8f%e5%92%8c%e8%a7%86%e9%a2%91/TTScripts.png"/> 
+</figure>
+
+<h2 id="ffmpeg">FFmpeg</h2>
+<p>该脚本基于 <a href="https://ffmpeg.org">FFmpeg</a> 命令实现，所以需要提前下载好相关组件</p>
+<p>下载地址：<a href="https://ffmpeg.org/download.html#releases">https://ffmpeg.org/download.html#releases</a></p>
+<blockquote>
+<p>Win 建议使用 winget 安装；Mac 建议使用 HomeBrew 安装</p>
+</blockquote>
+<h2 id="命令结构">命令结构</h2>
+<p><code>TTScripts input_dir out_dir [-q] [-ic] [-mc]</code></p>
+<h3 id="可选">可选</h3>
+<p>-q：图像或视频的压缩程度、质量，通常数值越高压缩程度越高，体积大小越小，默认为 2</p>
+<p>-ic：图像编码器参数，默认为 mjpeg，可选为 webp</p>
+<p>-mc：视频编码器参数，默认为 H.264，可选为 H.265 或 libvpx-vp9（仅 MP4）</p>
+<h2 id="使用">使用</h2>
+<p>示例：</p>
+<p><code>python TTScripts input_dir output_dir -q 8 -ic webp</code></p>
+<p>或</p>
+<p><code>python TTScripts input_dir output_dir -q 20</code></p>
+<blockquote>
+<p>可能会出现 <code>already exists. Overwrite? [y/N]</code> 提示文件已存在是否覆写，输入 y 继续即可，或者输入 n 拒绝</p>
+</blockquote>
+<h3 id="单图像或视频压缩">单图像或视频压缩</h3>
+<p>可使用如下命令</p>
+<p><code>python TTScripts single_file output_dir </code></p>
+<h3 id="环境变量">环境变量</h3>
+<p>可根据不同系统配置 PATH 环境变量实现全局调用</p>
+<p>Mac 为例：</p>
+<p>添加 <code>#!/usr/local/bin/env python</code> 至 <code>TTScripts.py</code> 行首</p>
+<p>再将 <code>TTScripts.py</code> 移动至可执行文件目录 <code>/usr/local/bin</code> 下</p>
+<p>可使用如下命令移动即可</p>
+<p><code>sudo cp TTScripts.py /usr/local/bin/hello</code></p>
+<blockquote>
+<p>如遇调用失败，可输入命令 <code>chmod +x TTScripts.py</code> 添加可执行权限</p>
+</blockquote>
+<p>最后可类似如下直接调用</p>
+<p><code>TTScripts input_dir output_dir</code></p>
+<h2 id="附">附</h2>
+<table>
+<thead>
+<tr>
+<th>CRF</th>
+<th>File size reduction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>10</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>20</td>
+<td>40%</td>
+</tr>
+<tr>
+<td>25</td>
+<td>60%</td>
+</tr>
+<tr>
+<td>30</td>
+<td>80%</td>
+</tr>
+</tbody>
+</table>
+]]></content:encoded>
+    </item>
+    
+>>>>>>> master
     <item>
       <title>一些自定义配置</title>
       <link>https://brealinhub.com/posts/%E4%B8%80%E4%BA%9B%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</link>
@@ -45,7 +146,7 @@ twitter = &amp;#39;&amp;#39;&amp;#39; &amp;lt;svg width=&amp;#34;800px&amp;#34; 
   favicon32x32:  &#34;/assets/favicon-32x32.png&#34;
   apple_touch_icon: &#34;/assets/apple-touch-icon.png&#34;
   safari_pinned_tab:  &#34;/assets/safari-pinned-tab.svg&#34;
-</code></pre><p>==注意==：我还在 <code>static</code> 目录下创建了<code>assets</code> 文件夹，将刚解压缩到了这个文件夹下，格式可为这样</p>
+</code></pre><p><mark>注意</mark>：我还在 <code>static</code> 目录下创建了<code>assets</code> 文件夹，将刚解压缩到了这个文件夹下，格式可为这样</p>
 <h2 id="post-文档窗口颜色和页面颜色">Post 文档窗口颜色和页面颜色</h2>
 <p>默认的 post 是白色背景，有时候看一篇博客纯白底色有点慌眼睛，个人更喜欢主题首页的颜色</p>
 <p>用取色工具取颜色，然后到 <code>/&lt;your site name&gt;/themes/PaperModX/assets/css/core/theme-vars.css</code> 更改</p>
@@ -130,7 +231,7 @@ twitter = &amp;#39;&amp;#39;&amp;#39; &amp;lt;svg width=&amp;#34;800px&amp;#34; 
 <p>使用的是这个 PapermodX 主题，有自带的渐变标记</p>
 <p>实例：</p>
 <p><code>==hello world==</code></p>
-<p>==hello world==</p>
+<p><mark>hello world</mark></p>
 <p>如果不需要这种或想更换颜色在 <code>/&lt;your site name&gt;/themes/PaperModX/assets/css/common/main.css</code> 中更改一下配置</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">mark</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="k">margin</span><span class="p">:</span> <span class="mi">0</span> <span class="mf">-0.4</span><span class="kt">em</span><span class="p">;</span>
@@ -148,7 +249,7 @@ twitter = &amp;#39;&amp;#39;&amp;#39; &amp;lt;svg width=&amp;#34;800px&amp;#34; 
 </span></span><span class="line"><span class="cl">	<span class="kp">-webkit-</span><span class="k">box-decoration-break</span><span class="p">:</span> <span class="kc">clone</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="k">box-decoration-break</span><span class="p">:</span> <span class="kc">clone</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span> 
-</span></span></code></pre></div><p>注：在这里我注视掉了这段，结果渲染的是默认的 <code>html</code> 纯黄色标记</p>
+</span></span></code></pre></div><p>注：在这里我注释掉了这段，渲染结果是默认的 <code>html</code> 纯黄色标记</p>
 <h2 id="shortcode">ShortCode</h2>
 <p>利用 hugo 自带的内容很容易实现一些效果</p>
 <p><span class = "mark-line">注意使用的时候把尖括号外的空格删掉</span></p>
