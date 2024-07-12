@@ -6,7 +6,83 @@
     <description>Recent content in Posts on brealinblog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 21 Jun 2023 16:49:20 +0800</lastBuildDate><atom:link href="https://brealinhub.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Jul 2024 14:23:08 +0800</lastBuildDate><atom:link href="https://brealinhub.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unity Addressables package 踩坑小记</title>
+      <link>https://brealinhub.com/posts/addressables%E8%B8%A9%E5%9D%91%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Fri, 12 Jul 2024 14:23:08 +0800</pubDate>
+      
+      <guid>https://brealinhub.com/posts/addressables%E8%B8%A9%E5%9D%91%E5%B0%8F%E8%AE%B0/</guid>
+      <description>踩坑问题：
+将资源上传到服务器后，在 Remote.LoadPath 中设置了路径但是无法访问到资源 更改服务器上的资源，客户端加载还是上次的资源 构建缓存 开始研究的时候，比较绕这一部分内容，在我修改 Remote.LoadPath 后，直接启动或者打包项目会导致修改后的地址是没有生效的，需要在 Addressables Gruops 窗口中的 Builds -&amp;gt; Clear Build Cache -&amp;gt; all ，清除一下所有的构建缓存，之后就能够访问新的修改后的地址。
+Build cache 会保存之前构建的中间结果和最终输出,包括编译后的脚本、处理后的资源等。这样在下次构建时，如果相关文件没有变化,就可以直接使用缓存的结果，而不需要重新处理。
+HTTP 服务器 需要在服务器设置 http 服务以供 Unity 服务去访问服务器的资源，这里我简单使用 python 的 http server 简单开启一个 http 服务器。
+在研究的过程中经常忘记要开启这个 http 服务器才能正常访问服务器的指定位置的资源。个人在这绕了好久(╯°□°）╯︵ ┻━┻
+python 开启简易服务器的命令：python3 -m http.server 80
+这里需要额外注意：
+比如我实际放游戏资源的路径在 /root/DEV/UnityAddresableTest/StandaloneWindows64/ 目录下，启动 python 的 http 服务器时，这个目录就成为了服务器的根目录。因此，应该在 root（~）启动 python http 服务器，而不是实际的游戏存放资源文件夹启动。 在 Unity 中的 Project setting 设置为允许 http 访问（方便测试设置为 Always allowed）。 Addressables 的本地加载机制 上面提到的踩坑，即使关闭 http 服务器，也能加载物体，虽然可能不是服务器最新的，但是也能加载，这就稍微有点不符合逻辑，因为几乎所有的设置都设置成了从远端加载。</description>
+      <content:encoded><![CDATA[<p>踩坑问题：</p>
+<ol>
+<li>将资源上传到服务器后，在 Remote.LoadPath 中设置了路径但是无法访问到资源</li>
+<li>更改服务器上的资源，客户端加载还是上次的资源</li>
+</ol>
+<h2 id="构建缓存">构建缓存</h2>
+<p>开始研究的时候，比较绕这一部分内容，在我修改 Remote.LoadPath 后，直接启动或者打包项目会导致修改后的地址是没有生效的，需要在 Addressables Gruops 窗口中的 Builds -&gt; Clear Build Cache -&gt; all ，清除一下所有的构建缓存，之后就能够访问新的修改后的地址。</p>
+<blockquote>
+<p>Build cache 会保存之前构建的中间结果和最终输出,包括编译后的脚本、处理后的资源等。这样在下次构建时，如果相关文件没有变化,就可以直接使用缓存的结果，而不需要重新处理。</p>
+</blockquote>
+<h2 id="http-服务器">HTTP 服务器</h2>
+<p>需要在服务器设置 http 服务以供 Unity 服务去访问服务器的资源，这里我简单使用 python 的 http server 简单开启一个 http 服务器。</p>
+<p>在研究的过程中经常忘记要开启这个 http 服务器才能正常访问服务器的指定位置的资源。个人在这绕了好久(╯°□°）╯︵ ┻━┻</p>
+<p>python 开启简易服务器的命令：<code>python3 -m http.server 80</code></p>
+<p>这里需要额外注意：</p>
+<ol>
+<li>比如我实际放游戏资源的路径在 /root/DEV/UnityAddresableTest/StandaloneWindows64/ 目录下，启动 python 的 http 服务器时，这个目录就成为了服务器的根目录。因此，应该在 root（~）启动 python http 服务器，而不是实际的游戏存放资源文件夹启动。</li>
+<li>在 Unity 中的 Project setting 设置为允许 http 访问（方便测试设置为 Always allowed）。</li>
+</ol>
+<figure>
+    <img loading="lazy" src="/img/Addressables%e8%b8%a9%e5%9d%91%e5%b0%8f%e8%ae%b0/img1.png"/> 
+</figure>
+
+<h2 id="addressables-的本地加载机制">Addressables 的本地加载机制</h2>
+<p>上面提到的踩坑，即使关闭 http 服务器，也能加载物体，虽然可能不是服务器最新的，但是也能加载，这就稍微有点不符合逻辑，因为几乎所有的设置都设置成了从远端加载。</p>
+<p>可能是因为以下原因：</p>
+<ol>
+<li>Addressables 系统会缓存之前加载的资源。即使设置为远程加载，如果资源之前已经被加载过，系统可能会直接使用缓存的版本。</li>
+<li>如果远程加载失败（例如无法连接到服务器），Addressables 会自动尝试从<a href="https://docs.unity.cn/Packages/com.unity.addressables%401.19/manual/LoadingAddressableAssets.html">本地加载资源</a>，这是一种内置的容错机制。</li>
+<li>如果远程目录（catalog）未更新或无法访问，系统会使用本地目录，这可能导致加载旧版本的资源。</li>
+</ol>
+<p>经过几次测试，基本锁定在缓存问题上，可以通过以下两个方法清除缓存：</p>
+<ol>
+<li>在生成新的物体之前清除所有缓存：<code>Caching.ClearCache();</code></li>
+<li>手动清除本地缓存，路径是：</li>
+</ol>
+<ul>
+<li>Windows: <code>%USERPROFILE%\AppData\LocalLow$$CompanyName]$$ProductName]\com.unity.addressables</code></li>
+<li>MacOS: <code>~/Library/Application Support/[CompanyName]/[ProductName]/com.unity.addressables</code></li>
+</ul>
+<p>也有类似以下这种代码清除缓存，但是实际测试的时候缺失了材质，可能哪个地方没关联上。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">IEnumerator</span> <span class="n">LoadAndInstantiatePrefab</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">   <span class="c1">// Clear cache for the specific prefab  </span>
+</span></span><span class="line"><span class="cl">   <span class="n">AsyncOperationHandle</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span> <span class="n">clearCacheHandle</span> <span class="p">=</span> <span class="n">Addressables</span><span class="p">.</span><span class="n">ClearDependencyCacheAsync</span><span class="p">(</span><span class="n">prefab</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">   <span class="k">yield</span> <span class="k">return</span> <span class="n">clearCacheHandle</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">   <span class="c1">// Load and instantiate prefab  </span>
+</span></span><span class="line"><span class="cl">   <span class="n">AsyncOperationHandle</span><span class="p">&lt;</span><span class="n">GameObject</span><span class="p">&gt;</span> <span class="n">loadHandle</span> <span class="p">=</span> <span class="n">prefab</span><span class="p">.</span><span class="n">LoadAssetAsync</span><span class="p">&lt;</span><span class="n">GameObject</span><span class="p">&gt;();</span>  
+</span></span><span class="line"><span class="cl">   <span class="k">yield</span> <span class="k">return</span> <span class="n">loadHandle</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="p">(</span><span class="n">loadHandle</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">AsyncOperationStatus</span><span class="p">.</span><span class="n">Succeeded</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">   <span class="p">{</span>      <span class="n">temp</span> <span class="p">=</span> <span class="n">Instantiate</span><span class="p">(</span><span class="n">loadHandle</span><span class="p">.</span><span class="n">Result</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>   <span class="k">else</span>  
+</span></span><span class="line"><span class="cl">   <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">      <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;Failed to load&#34;</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">   <span class="n">Addressables</span><span class="p">.</span><span class="n">Release</span><span class="p">(</span><span class="n">loadHandle</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>]]></content:encoded>
+    </item>
+    
     <item>
       <title>批量压缩图像和视频脚本</title>
       <link>https://brealinhub.com/posts/%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E9%A2%91%E8%84%9A%E6%9C%AC/</link>
