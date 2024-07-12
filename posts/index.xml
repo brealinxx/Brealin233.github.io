@@ -1480,11 +1480,11 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 <h2 id="内容">内容</h2>
 <h3 id="async">async</h3>
 <p>用以标记函数的关键字，例如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">async</span> <span class="n">Task</span> <span class="n">TestAsync</span><span class="p">(){</span> <span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">async</span> <span class="n">Task</span> <span class="n">TestAsync</span><span class="p">(){</span> <span class="p">}</span>
 </span></span></code></pre></div><p>但仅这还不是真正的异步函数</p>
 <h3 id="await">await</h3>
 <p>必须在 <code>async</code> 标记下的函数内使用的关键字，例如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">async</span> <span class="n">Task</span> <span class="n">TestAsync</span><span class="p">()</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">async</span> <span class="n">Task</span> <span class="n">TestAsync</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">delay</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;TestDone&#34;</span><span class="p">);</span>
@@ -1538,15 +1538,15 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 <p><code>Task</code> 对象不是线程，也不会创建线程，它只是代表了异步操作的状态和行为。异步操作的实际执行可能在线程池线程、IO 线程、UI 线程或者其它线程中执行，具体取决于异步操作的实现方式和上下文</p>
 <h2 id="比较">比较</h2>
 <h3 id="例一">例一</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>  
-</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">mres</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ManualResetEventSlim</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">mres</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ManualResetEventSlim</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">    <span class="n">ThreadPool</span><span class="p">.</span><span class="n">QueueUserWorkItem</span><span class="p">&lt;</span><span class="n">ManualResetEventSlim</span><span class="p">&gt;((</span><span class="n">_msg</span><span class="p">)</span> <span class="p">=&gt;</span>   
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>   
 </span></span><span class="line"><span class="cl">		<span class="n">i</span> <span class="p">=</span> <span class="n">Math</span><span class="p">.</span><span class="n">Exp</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>   
 </span></span><span class="line"><span class="cl">        <span class="n">mres</span><span class="p">.</span><span class="n">Set</span><span class="p">();</span>  
-</span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="n">mres</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="n">mres</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl">    <span class="n">mres</span><span class="p">.</span><span class="n">Wait</span><span class="p">();</span>  
 </span></span><span class="line"><span class="cl">    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>  
@@ -1555,7 +1555,7 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>上面这个例子首先创建了 <code>ManualResetEventSlim</code> API 与其中的 <code>Set</code> 和 <code>Wait</code> 方法来控制线程池运行，再创建线程池执行内容</p>
 <p>现在，我们可以用如下 <code>Task</code> 来简化操作</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">task</span> <span class="p">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">Math</span><span class="p">.</span><span class="n">Exp</span><span class="p">(</span><span class="m">1</span><span class="p">));</span>  
 </span></span><span class="line"><span class="cl">    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">task</span><span class="p">.</span><span class="n">Result</span><span class="p">);</span>  
@@ -1565,28 +1565,28 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 </span></span></code></pre></div><p>与用前一个 <code>ThredPool</code> 类方法相比，<code>Task</code> 省去了创建变量和控制线程发生的过程，且用前个方法不能返回类型，而此方法在这个例子中，返回了 <code>Task&lt;double&gt;</code> 类型（具有 Result 属性）</p>
 <h3 id="例二">例二</h3>
 <p>in <code>BaseClass.cs</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">CarBuilding</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">CarBuilding</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="k">static</span> <span class="n">Body</span> <span class="n">BuildBody</span><span class="p">(</span><span class="kt">int</span> <span class="n">weight</span><span class="p">,</span> <span class="kt">int</span> <span class="n">length</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Body</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">width</span><span class="p">);</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="k">static</span> <span class="n">Engine</span> <span class="n">BuildEngine</span><span class="p">(</span><span class="kt">int</span> <span class="n">horsePower</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Engine</span><span class="p">(</span><span class="n">horsePower</span><span class="p">);</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="k">static</span> <span class="n">Suspension</span> <span class="n">BuildSuspension</span><span class="p">(</span><span class="kt">int</span> <span class="n">supportedKg</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Suspension</span><span class="p">(</span><span class="n">supportedKg</span><span class="p">);</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="k">static</span> <span class="n">Painting</span> <span class="n">Paint</span><span class="p">(</span><span class="kt">string</span> <span class="n">color</span><span class="p">,</span> <span class="kt">int</span> <span class="n">bodyArea</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Painting</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">bodyArea</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Body</span> <span class="n">BuildBody</span><span class="p">(</span><span class="kt">int</span> <span class="n">weight</span><span class="p">,</span> <span class="kt">int</span> <span class="n">length</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Body</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">width</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Engine</span> <span class="n">BuildEngine</span><span class="p">(</span><span class="kt">int</span> <span class="n">horsePower</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Engine</span><span class="p">(</span><span class="n">horsePower</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Suspension</span> <span class="n">BuildSuspension</span><span class="p">(</span><span class="kt">int</span> <span class="n">supportedKg</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Suspension</span><span class="p">(</span><span class="n">supportedKg</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Painting</span> <span class="n">Paint</span><span class="p">(</span><span class="kt">string</span> <span class="n">color</span><span class="p">,</span> <span class="kt">int</span> <span class="n">bodyArea</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Painting</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">bodyArea</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Test</span><span class="p">(</span><span class="n">Body</span> <span class="n">body</span><span class="p">,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Suspension</span><span class="p">&gt;</span> <span class="n">suspensions</span><span class="p">,</span> <span class="n">Engine</span> <span class="n">engine</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Test</span><span class="p">(</span><span class="n">Body</span> <span class="n">body</span><span class="p">,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Suspension</span><span class="p">&gt;</span> <span class="n">suspensions</span><span class="p">,</span> <span class="n">Engine</span> <span class="n">engine</span><span class="p">)</span>  
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>  
 </span></span><span class="line"><span class="cl">	    <span class="k">if</span> <span class="p">(</span><span class="n">suspensions</span><span class="p">.</span><span class="n">Sum</span><span class="p">(</span><span class="n">s</span> <span class="p">=&gt;</span> <span class="n">s</span><span class="p">.</span><span class="n">SupportedKg</span><span class="p">)</span> <span class="p">&lt;=</span> <span class="n">body</span><span class="p">.</span><span class="n">Weight</span> <span class="p">||</span> <span class="n">engine</span><span class="p">.</span><span class="n">Horsepower</span> <span class="p">*</span> <span class="m">4</span> <span class="p">&lt;=</span> <span class="n">body</span><span class="p">.</span><span class="n">Weight</span><span class="p">)</span>  
 </span></span><span class="line"><span class="cl">	        <span class="k">throw</span> <span class="k">new</span> <span class="n">ArgumentException</span><span class="p">(</span><span class="s">&#34;The car weighs too much&#34;</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>        
 </span></span><span class="line"><span class="cl">	    
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>  
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">Body</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">Body</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">Body</span><span class="p">(</span><span class="kt">int</span> <span class="n">weight</span><span class="p">,</span> <span class="kt">int</span> <span class="n">length</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Body</span><span class="p">(</span><span class="kt">int</span> <span class="n">weight</span><span class="p">,</span> <span class="kt">int</span> <span class="n">length</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">)</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>        
 </span></span><span class="line"><span class="cl">	    <span class="n">Weight</span> <span class="p">=</span> <span class="n">weight</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">Length</span> <span class="p">=</span> <span class="n">length</span><span class="p">;</span>  
@@ -1595,36 +1595,36 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 </span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;{Weight} and {Length} and {Width}&#34;</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>   
 </span></span><span class="line"><span class="cl">     
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">Weight</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">Length</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">Width</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">Weight</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">Length</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">Width</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
 </span></span><span class="line"><span class="cl"><span class="p">}</span>  
 </span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">Engine</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">Engine</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">Engine</span><span class="p">(</span><span class="kt">int</span> <span class="n">horsePower</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Engine</span><span class="p">(</span><span class="kt">int</span> <span class="n">horsePower</span><span class="p">)</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>        
 </span></span><span class="line"><span class="cl">	    <span class="n">Horsepower</span> <span class="p">=</span> <span class="n">horsePower</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>   
 </span></span><span class="line"><span class="cl">     
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">Horsepower</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">Horsepower</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
 </span></span><span class="line"><span class="cl"><span class="p">}</span>  
 </span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">Suspension</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">Suspension</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">Suspension</span><span class="p">(</span><span class="kt">int</span> <span class="n">supportedKg</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Suspension</span><span class="p">(</span><span class="kt">int</span> <span class="n">supportedKg</span><span class="p">)</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>        
 </span></span><span class="line"><span class="cl">	    <span class="n">SupportedKg</span> <span class="p">=</span> <span class="n">supportedKg</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">	    
 </span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">SupportedKg</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span> 
 </span></span><span class="line"><span class="cl">       
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">SupportedKg</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">SupportedKg</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
 </span></span><span class="line"><span class="cl"><span class="p">}</span>  
 </span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">Painting</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">Painting</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">Painting</span><span class="p">(</span><span class="kt">string</span> <span class="n">color</span><span class="p">,</span> <span class="kt">int</span> <span class="n">bodyArea</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Painting</span><span class="p">(</span><span class="kt">string</span> <span class="n">color</span><span class="p">,</span> <span class="kt">int</span> <span class="n">bodyArea</span><span class="p">)</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>        
 </span></span><span class="line"><span class="cl">	    <span class="n">Color</span> <span class="p">=</span> <span class="n">color</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">BodyArea</span> <span class="p">=</span> <span class="n">bodyArea</span><span class="p">;</span>  
@@ -1632,13 +1632,13 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 </span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;{Color} and {BodyArea}&#34;</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>  
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">string</span> <span class="n">Color</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">BodyArea</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">Color</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">BodyArea</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>  
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>在  <code>Main</code> 函数中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
-</span></span><span class="line"><span class="cl">    <span class="n">Body</span> <span class="n">body</span> <span class="p">=</span> <span class="k">null</span><span class="p">!;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">Body</span> <span class="n">body</span> <span class="p">=</span> <span class="kc">null</span><span class="p">!;</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">bodyThread</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(()</span> <span class="p">=&gt;</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">body</span> <span class="p">=</span> <span class="n">BuildBody</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">2</span><span class="p">);</span>  
@@ -1653,9 +1653,9 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>这里两个方法有着区别，<code>Task</code> 在这更具优势，上文也有提到（简洁、具有返回值）</p>
 <p>继续往 <code>Main</code> 函数添加内容</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
-</span></span><span class="line"><span class="cl">    <span class="n">Body</span> <span class="n">body</span> <span class="p">=</span> <span class="k">null</span><span class="p">!;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">Body</span> <span class="n">body</span> <span class="p">=</span> <span class="kc">null</span><span class="p">!;</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">bodyThread</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(()</span> <span class="p">=&gt;</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">body</span> <span class="p">=</span> <span class="n">BuildBody</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">2</span><span class="p">);</span>  
@@ -1676,7 +1676,7 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 </span></span><span class="line"><span class="cl">	<span class="c1">// 100 and 5 and 100</span>
 </span></span><span class="line"><span class="cl">	<span class="c1">// red and 500</span>
 </span></span></code></pre></div><p>上面内容用的 <code>Thread</code> 写法写出两个子线程运行的方法，下面写一个 <code>Task</code> 写法</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">bodyTask</span> <span class="p">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">BuildBody</span><span class="p">(</span><span class="m">50</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">2</span><span class="p">));</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">paintingTask</span> <span class="p">=</span> <span class="n">bodyTask</span><span class="p">.</span><span class="n">ContinueWith</span><span class="p">(</span>  
@@ -1694,7 +1694,7 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Concurrent</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">------------------------------------------------</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">suspensions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ConcurrentBag</span><span class="p">&lt;</span><span class="n">Suspension</span><span class="p">&gt;();</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">suspensionThreads</span> <span class="p">=</span> <span class="n">Enumerable</span>  
@@ -1717,7 +1717,7 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 </span></span></code></pre></div><p><code>ConcurrentBag</code>：表示线程安全、无序的对象集合</p>
 <p>这个 API 就是为了解决多个线程池的性能问题</p>
 <p>而用 <code>Task</code> 创建则无需此步骤，如下</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">suspensionTasks</span> <span class="p">=</span> <span class="n">Enumerable</span>  
 </span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">)</span>  
@@ -1731,9 +1731,9 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 <p>也可进一步优化为：<code>Task.Factory.ContinueWhenAll(suspensionTasks, tasks =&gt; tasks.ToList());</code></p>
 <p>在 <code>Main</code> 函数添加以下内容：</p>
 <p>用 <code>Thread</code> 表示线程抛出异常</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
-</span></span><span class="line"><span class="cl">    <span class="n">Exception</span><span class="p">?</span> <span class="n">thrownException</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Exception</span><span class="p">?</span> <span class="n">thrownException</span> <span class="p">=</span> <span class="kc">null</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">      
 </span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">body</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Body</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">    <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Suspension</span><span class="p">&gt;</span> <span class="n">suspensions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Suspension</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>  
@@ -1753,12 +1753,12 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 </span></span><span class="line"><span class="cl">        <span class="n">testing</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>  
 </span></span><span class="line"><span class="cl">  
 </span></span><span class="line"><span class="cl">    <span class="n">testing</span><span class="p">.</span><span class="n">Join</span><span class="p">();</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">thrownException</span> <span class="k">is</span> <span class="n">not</span> <span class="k">null</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">thrownException</span> <span class="k">is</span> <span class="n">not</span> <span class="kc">null</span><span class="p">)</span>  
 </span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="n">thrownException</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>只有当线程抛出异常，才会使 <code>thrownException</code> 有值，没有异常则是 <code>null</code></p>
 <p><code>Tasks</code> 方法同样有内置工具检测异常，如下</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">body</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Body</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">);</span>    
 </span></span><span class="line"><span class="cl">	<span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Suspension</span><span class="p">&gt;</span> <span class="n">suspensions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Suspension</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>    
@@ -1781,10 +1781,10 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 <h1 id="死锁">死锁</h1>
 <p>一般出现在 UI 或 ASP.NET 程序中</p>
 <h2 id="内容-1">内容</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">object</span> <span class="n">lock1</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>  
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">object</span> <span class="n">lock2</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">object</span> <span class="n">lock1</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">object</span> <span class="n">lock2</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>  
 </span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="n">Thread</span> <span class="n">t1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(</span><span class="n">DoWork1</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">    <span class="n">Thread</span> <span class="n">t2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(</span><span class="n">DoWork2</span><span class="p">);</span>  
@@ -1795,7 +1795,7 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 </span></span><span class="line"><span class="cl">    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Done.&#34;</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl"><span class="p">}</span>  
 </span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">DoWork1</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="k">void</span> <span class="n">DoWork1</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="k">lock</span> <span class="p">(</span><span class="n">lock1</span><span class="p">)</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>        
@@ -1808,7 +1808,7 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>  
 </span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">DoWork2</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="k">void</span> <span class="n">DoWork2</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="k">lock</span> <span class="p">(</span><span class="n">lock2</span><span class="p">)</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>        
@@ -1865,7 +1865,7 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 <li></li>
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// WinForms 示例程序(同样原理用于 WPF 程序).</span>
-</span></span><span class="line"><span class="cl"><span class="k">private</span> <span class="k">async</span> <span class="k">void</span> <span class="n">DownloadFileButton_Click</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">async</span> <span class="k">void</span> <span class="n">DownloadFileButton_Click</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// 因为我们使用了异步关键字 awiat，这个 UI 线程不会被文件下载阻止</span>
 </span></span><span class="line"><span class="cl">  <span class="k">await</span> <span class="n">DownloadFileAsync</span><span class="p">(</span><span class="n">fileNameTextBox</span><span class="p">.</span><span class="n">Text</span><span class="p">);</span>
@@ -1876,26 +1876,26 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 </span></span></code></pre></div><ol start="2">
 <li></li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="n">button</span><span class="p">()</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">button</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;main1 thread {Thread.CurrentThread.ManagedThreadId}&#34;</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">    <span class="n">TestConfigureAwait</span><span class="p">().</span><span class="n">Wait</span><span class="p">();</span>  
 </span></span><span class="line"><span class="cl">    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;main2 thread: {Thread.CurrentThread.ManagedThreadId}&#34;</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl"><span class="p">}</span>  
 </span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span> <span class="n">TestConfigureAwait</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">async</span> <span class="n">Task</span> <span class="n">TestConfigureAwait</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">(()</span> <span class="p">=&gt;</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">6000</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;task thread: {Thread.CurrentThread.ManagedThreadId}&#34;</span><span class="p">);</span>  
-</span></span><span class="line"><span class="cl">    <span class="p">}).</span><span class="n">ConfigureAwait</span><span class="p">(</span><span class="k">false</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">}).</span><span class="n">ConfigureAwait</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> 
 </span></span><span class="line"><span class="cl">     
 </span></span><span class="line"><span class="cl">    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;testConfigureAwait thread: {Thread.CurrentThread.ManagedThreadId}&#34;</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>在这个示例中，是一个 UI 上下文内容，和使用了 <code>ConfigureAwait(false)</code> 来解决死锁问题</p>
 <h1 id="异常捕获">异常捕获</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Test</span><span class="p">()</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Test</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="k">try</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>  
@@ -1907,7 +1907,7 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>  
 </span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">SomeAsyncCode</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">SomeAsyncCode</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">Delay</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">    <span class="k">throw</span> <span class="k">new</span> <span class="n">ArgumentException</span><span class="p">(</span><span class="s">&#34;Oh noes!&#34;</span><span class="p">);</span>  
@@ -1927,13 +1927,13 @@ public async Task TestAsync() { await Task.delay(1000); Console.WriteLine(&amp;#
 <h2 id="解决">解决</h2>
 <p>控制台程序没有很大的必要使用异步，但为简单的一些操作演示，也是能解决的</p>
 <p>让主线程强制等待异步完成，如以下示例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">MainAsync</span><span class="p">(</span><span class="n">args</span><span class="p">).</span><span class="n">GetAwaiter</span><span class="p">().</span><span class="n">GetResult</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">	<span class="c1">// or MainAsync(args).Wait()</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">async</span> <span class="n">Task</span> <span class="n">MainAsync</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="kd">async</span> <span class="n">Task</span> <span class="n">MainAsync</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">Bootstrapper</span> <span class="n">bs</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Bootstrapper</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">await</span> <span class="n">bs</span><span class="p">.</span><span class="n">GetList</span><span class="p">();</span>
@@ -2021,7 +2021,7 @@ Thread 对象代表了一个线程的执行状态和行为，它可以直接创�
 </ul>
 <p>在 .Net Framework 4.0 之前都是都是用 <code>Thread</code> 类来进行操作并发编程，此类实例表示操作系统内部调度的托管线程</p>
 <h3 id="创建实例">创建实例</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">t</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="n">i</span> <span class="p">=</span> <span class="n">Math</span><span class="p">.</span><span class="n">Exp</span><span class="p">(</span><span class="m">1</span><span class="p">);</span> <span class="p">});</span>   
@@ -2042,13 +2042,13 @@ Thread 对象代表了一个线程的执行状态和行为，它可以直接创�
 <p>以前可见 <code>Abort()</code> 销毁方法，但在 .Net 5.0 之后被列为过时方法</p>
 <p>原因：不知道被销毁的线程哪些代码被执行或未执行，比如调用 <code>Thread.Abort</code> 可能会阻止静态构造函数的执行或托管或非托管资源的发布</p>
 <p>如果强行使用此方法，会报出 <code>Abort is not supported on this platform</code> 错误，也可以屏蔽此错误以使用，例如</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="cp">#pragma warning disable SYSLIB0006 </span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="cp">#pragma</span> <span class="n">warning</span> <span class="n">disable</span> <span class="n">SYSLIB0006</span> 
 </span></span><span class="line"><span class="cl"><span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">Abort</span><span class="p">();</span> 
-</span></span><span class="line"><span class="cl"><span class="cp">#pragma warning restore SYSLIB0006</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#pragma</span> <span class="n">warning</span> <span class="n">restore</span> <span class="n">SYSLIB0006</span>
 </span></span></code></pre></div><p>但建议使用 <code>CancellationTokenSource</code> 类进行线程的销毁</p>
 <p>示例：</p>
 <p>in <code>CancellationTest.cs</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">	<span class="c1">// 创建取消令牌源实例</span>
 </span></span><span class="line"><span class="cl">    <span class="n">CancellationTokenSource</span> <span class="n">cts</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CancellationTokenSource</span><span class="p">();</span>  
@@ -2066,7 +2066,7 @@ Thread 对象代表了一个线程的执行状态和行为，它可以直接创�
 </span></span><span class="line"><span class="cl">    <span class="n">cts</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>  
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">CallToChildThread</span><span class="p">(</span><span class="kt">object?</span> <span class="n">i</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="k">void</span> <span class="n">CallToChildThread</span><span class="p">(</span><span class="kt">object?</span> <span class="n">i</span><span class="p">)</span>  
 </span></span><span class="line"><span class="cl"><span class="p">{</span>  
 </span></span><span class="line"><span class="cl">    <span class="k">try</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>  
@@ -2110,18 +2110,18 @@ Thread 对象代表了一个线程的执行状态和行为，它可以直接创�
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Program</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>  
 </span></span><span class="line"><span class="cl">	    <span class="n">Thread</span> <span class="n">t</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(</span><span class="n">DoWork</span><span class="p">)</span>  
 </span></span><span class="line"><span class="cl">		<span class="p">{</span>        
-</span></span><span class="line"><span class="cl">		    <span class="n">IsBackground</span> <span class="p">=</span> <span class="k">true</span> <span class="c1">// 设置为后台线程  </span>
+</span></span><span class="line"><span class="cl">		    <span class="n">IsBackground</span> <span class="p">=</span> <span class="kc">true</span> <span class="c1">// 设置为后台线程  </span>
 </span></span><span class="line"><span class="cl">	    <span class="p">};</span>  
 </span></span><span class="line"><span class="cl">	    <span class="n">t</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>  
 </span></span><span class="line"><span class="cl">  
 </span></span><span class="line"><span class="cl">	    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Main thread exit.&#34;</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>  
 </span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="k">void</span> <span class="n">DoWork</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">	<span class="kd">static</span> <span class="k">void</span> <span class="n">DoWork</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>  
 </span></span><span class="line"><span class="cl">	    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Background thread start.&#34;</span><span class="p">);</span>  
 </span></span><span class="line"><span class="cl">	    <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">5000</span><span class="p">);</span> <span class="c1">// 模拟耗时操作  </span>
@@ -2151,13 +2151,13 @@ Thread 对象代表了一个线程的执行状态和行为，它可以直接创�
 <h4 id="问题">问题</h4>
 <p>示例如下：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">exp1</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">mres</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ManualResetEventSlim</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">mres</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ManualResetEventSlim</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">ThreadPool</span><span class="p">.</span><span class="n">QueueUserWorkItem</span><span class="p">&lt;</span><span class="n">ManualResetEventSlim</span><span class="p">&gt;((</span><span class="n">_mres</span><span class="p">)</span> <span class="p">=&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">exp1</span> <span class="p">=</span> <span class="n">Math</span><span class="p">.</span><span class="n">Exp</span><span class="p">(</span><span class="m">40</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">	<span class="n">mres</span><span class="p">.</span><span class="n">Set</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="n">mres</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="n">mres</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">mres</span><span class="p">.</span><span class="n">Wait</span><span class="p">();</span>
 </span></span></code></pre></div><p><code>ManualResetEventSlim</code> 类是一个轻量的物体，工作原理有点像发出信号，比如上述代码内容，<code>mres</code> 实例有 <code>Set</code> 和 <code>Wait</code> 两种方法，<code>Wait</code> 方法要等到线程中发出的 <code>Set</code> 信号才能执行</p>
